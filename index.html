@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的静态网页集</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      color: #fff;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+    header { text-align: center; margin-bottom: 60px; }
+    h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, #00d9ff, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+    .subtitle { color: #94a3b8; font-size: 1.2rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.1);
+      border-color: #00d9ff;
+      box-shadow: 0 20px 40px rgba(0,217,255,0.2);
+    }
+    .card-title { font-size: 1.4rem; margin-bottom: 12px; color: #00d9ff; }
+    .card-desc { color: #94a3b8; line-height: 1.6; }
+    .card-date { margin-top: 16px; font-size: 0.85rem; color: #64748b; }
+    footer { text-align: center; margin-top: 80px; color: #64748b; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🚀 我的静态网页集</h1>
+      <p class="subtitle">这里收集了我所有的静态项目</p>
+    </header>
+    <div class="grid">
+      <a href="pages/demo.html" class="card">
+        <div class="card-title">Demo Page</div>
+        <div class="card-desc">点击查看 Demo Page</div>
+        <div class="card-date">📅 2026-03-20</div>
+      </a>
+    </div>
+    <footer>
+      <p>🤖 由 GitHub Actions 自动更新</p>
+    </footer>
+  </div>
+</body>
+</html>
