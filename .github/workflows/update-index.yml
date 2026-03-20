@@ -5,7 +5,6 @@ on:
     branches: [main]
     paths:
       - 'pages/**'
-      - '!README.md'
 
 jobs:
   update-index:
@@ -20,15 +19,9 @@ jobs:
           for file in pages/*.html; do
             if [ -f "$file" ]; then
               filename=$(basename "$file" .html)
-              title=$(echo "$filename" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
-              desc="点击查看 $title"
-              date=$(git log -1 --format=%ai "$file" 2>/dev/null | cut -d' ' -f1 || echo "2026-03-20")
-              
-              INDEX="${INDEX}
-      <a href=\"pages/${filename}.html\" class=\"card\">
-        <div class=\"card-title\">${title}</div>
-        <div class=\"card-desc\">${desc}</div>
-        <div class=\"card-date\">📅 ${date}</div>
+              INDEX="${INDEX}<a href=\"pages/${filename}.html\" class=\"card\">
+        <div class=\"card-title\">${filename}</div>
+        <div class=\"card-desc\">点击查看</div>
       </a>"
             fi
           done
@@ -44,5 +37,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add index.html
-          git diff --quiet || git commit -m "🤖 Auto update index"
+          git diff --quiet || git commit -m "Auto update index"
           git push
