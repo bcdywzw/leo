@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI时代组织管理新十条 | 丛龙峰</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===========================================
+           CSS CUSTOM PROPERTIES - DARK BOTANICAL
+           Elegant, sophisticated, artistic, premium
+           =========================================== */
+        :root {
+            /* Colors */
+            --bg-primary: #0a0a0a;
+            --bg-gradient: linear-gradient(145deg, #0a0a0a 0%, #151515 50%, #0d0d0d 100%);
+            --text-primary: #e8e4df;
+            --text-secondary: #9a9590;
+            --accent-warm: #d4a574;
+            --accent-pink: #e8b4b8;
+            --accent-gold: #c9b896;
+            --accent-teal: #7ab8a8;
+            
+            /* Typography */
+            --font-display: 'Noto Serif SC', 'Cormorant', serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
+            --title-size: clamp(2rem, 5vw, 4rem);
+            --subtitle-size: clamp(1rem, 2.5vw, 1.75rem);
+            --body-size: clamp(0.8rem, 1.5vw, 1.1rem);
+            --quote-size: clamp(1.1rem, 2vw, 1.5rem);
+            
+            /* Spacing */
+            --slide-padding: clamp(2rem, 5vw, 5rem);
+            --content-gap: clamp(1.5rem, 3vw, 3rem);
+            
+            /* Animation */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.8s;
+        }
+
+        /* ===========================================
+           BASE STYLES
+           =========================================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* ===========================================
+           SLIDE STRUCTURE
+           =========================================== */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: var(--bg-gradient);
+        }
+        
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-height: 100%;
+            overflow: hidden;
+            padding: var(--slide-padding);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===========================================
+           DECORATIVE ELEMENTS - ABSTRACT SHAPES
+           =========================================== */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .shape-1 {
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, var(--accent-pink) 0%, transparent 70%);
+            top: -10%;
+            right: -10%;
+            animation: float-1 20s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 35vw;
+            height: 35vw;
+            background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%);
+            bottom: -15%;
+            left: -5%;
+            animation: float-2 25s ease-in-out infinite;
+        }
+        
+        .shape-3 {
+            width: 25vw;
+            height: 25vw;
+            background: radial-gradient(circle, var(--accent-teal) 0%, transparent 70%);
+            top: 50%;
+            left: 60%;
+            animation: float-3 18s ease-in-out infinite;
+        }
+        
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 20px) scale(1.05); }
+        }
+        
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -30px) scale(1.1); }
+        }
+        
+        @keyframes float-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, -20px) scale(0.95); }
+        }
+
+        /* Accent lines */
+        .accent-line {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--accent-warm), transparent);
+            opacity: 0.3;
+        }
+
+        /* ===========================================
+           TYPOGRAPHY
+           =========================================== */
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        h1 {
+            font-size: var(--title-size);
+            letter-spacing: 0.02em;
+        }
+        
+        h2 {
+            font-size: var(--subtitle-size);
+            color: var(--accent-warm);
+            font-weight: 400;
+            margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+        }
+        
+        p {
+            font-size: var(--body-size);
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        
+        .highlight {
+            color: var(--accent-warm);
+        }
+        
+        .number {
+            font-family: 'Cormorant', serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 400;
+            color: var(--accent-warm);
+            opacity: 0.15;
+            position: absolute;
+            top: 5%;
+            left: var(--slide-padding);
+            z-index: 0;
+        }
+
+        /* ===========================================
+           TITLE SLIDE
+           =========================================== */
+        .title-slide {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .title-slide h1 {
+            margin-bottom: var(--content-gap);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-warm) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .title-slide .subtitle {
+            font-size: var(--subtitle-size);
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+        
+        .title-slide .author {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--accent-gold);
+            margin-top: var(--content-gap);
+            font-style: italic;
+        }
+
+        /* ===========================================
+           CONTENT SLIDE
+           =========================================== */
+        .content-slide {
+            max-width: min(85vw, 900px);
+            margin: 0 auto;
+        }
+        
+        .content-slide h2 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .content-slide h2::before {
+            content: '';
+            width: 3px;
+            height: 1.2em;
+            background: var(--accent-warm);
+            border-radius: 2px;
+        }
+        
+        .key-points {
+            margin-top: var(--content-gap);
+        }
+        
+        .key-points li {
+            font-size: var(--body-size);
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: clamp(0.8rem, 2vw, 1.5rem);
+            padding-left: 1.5rem;
+            position: relative;
+            list-style: none;
+        }
+        
+        .key-points li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-warm);
+            opacity: 0.6;
+        }
+        
+        .key-points li strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* ===========================================
+           QUOTE SLIDE
+           =========================================== */
+        .quote-slide {
+            text-align: center;
+            max-width: min(80vw, 800px);
+            margin: 0 auto;
+        }
+        
+        .quote {
+            font-family: var(--font-display);
+            font-size: var(--quote-size);
+            font-style: italic;
+            line-height: 1.8;
+            color: var(--text-primary);
+            position: relative;
+            padding: 0 2rem;
+        }
+        
+        .quote::before,
+        .quote::after {
+            content: '"';
+            font-size: 3em;
+            color: var(--accent-warm);
+            opacity: 0.3;
+            position: absolute;
+            font-family: 'Cormorant', serif;
+        }
+        
+        .quote::before {
+            top: -0.3em;
+            left: -0.2em;
+        }
+        
+        .quote::after {
+            content: '"';
+            bottom: -0.5em;
+            right: -0.2em;
+        }
+        
+        .quote-source {
+            margin-top: var(--content-gap);
+            font-size: var(--body-size);
+            color: var(--accent-gold);
+        }
+
+        /* ===========================================
+           END SLIDE
+           =========================================== */
+        .end-slide {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .end-slide h1 {
+            color: var(--accent-warm);
+        }
+        
+        .end-slide .tagline {
+            font-family: var(--font-display);
+            font-size: var(--quote-size);
+            color: var(--text-secondary);
+            margin-top: var(--content-gap);
+            max-width: 600px;
+            font-style: italic;
+        }
+
+        /* ===========================================
+           ANIMATIONS
+           =========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+        
+        .slide.visible .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal:nth-child(1) { transition-delay: 0.1s; }
+        .reveal:nth-child(2) { transition-delay: 0.25s; }
+        .reveal:nth-child(3) { transition-delay: 0.4s; }
+        .reveal:nth-child(4) { transition-delay: 0.55s; }
+        .reveal:nth-child(5) { transition-delay: 0.7s; }
+        .reveal:nth-child(6) { transition-delay: 0.85s; }
+        
+        /* Number fade in */
+        .number {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s var(--ease-out-expo),
+                        transform 1s var(--ease-out-expo);
+        }
+        
+        .slide.visible .number {
+            opacity: 0.15;
+            transform: translateY(0);
+        }
+
+        /* ===========================================
+           NAVIGATION
+           =========================================== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-warm), var(--accent-pink));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+        
+        .nav-dots {
+            position: fixed;
+            right: clamp(1rem, 2vw, 2rem);
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 100;
+        }
+        
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+            opacity: 0.3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .nav-dot:hover {
+            opacity: 0.6;
+            transform: scale(1.2);
+        }
+        
+        .nav-dot.active {
+            opacity: 1;
+            background: var(--accent-warm);
+            transform: scale(1.3);
+        }
+
+        /* Keyboard hint */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0.4;
+            z-index: 100;
+        }
+
+        /* ===========================================
+           RESPONSIVE BREAKPOINTS
+           =========================================== */
+        @media (max-height: 700px) {
+            :root {
+                --slide-padding: clamp(1.5rem, 3vw, 2.5rem);
+                --content-gap: clamp(1rem, 2vw, 1.5rem);
+                --title-size: clamp(1.5rem, 4vw, 2.5rem);
+            }
+            
+            .number {
+                font-size: clamp(3rem, 8vw, 5rem);
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .nav-dots, .keyboard-hint {
+                display: none;
+            }
+            
+            .key-points li {
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-dots {
+                right: 0.5rem;
+            }
+            
+            .shape {
+                opacity: 0.25;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.2s !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+    <nav class="nav-dots"></nav>
+    <span class="keyboard-hint">← → 或空格键导航</span>
+
+    <!-- ==================== SLIDE 1: TITLE ==================== -->
+    <section class="slide title-slide">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <h1 class="reveal">AI时代组织管理新十条</h1>
+        <p class="subtitle reveal">从工业逻辑到生命逻辑的组织变革</p>
+        <p class="author reveal">丛龙峰</p>
+    </section>
+
+    <!-- ==================== SLIDE 2: 组织归核 ==================== -->
+    <section class="slide">
+        <div class="shape shape-3"></div>
+        <span class="number">01</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">组织归核，回到人的原点</h2>
+                <ul class="key-points">
+                    <li class="reveal"><strong>组织变小是必然趋势</strong>，背后是组织归核——回到真正有竞争力的核心</li>
+                    <li class="reveal">AI替代了与复制相关的大量工作，让企业<strong>回到核心价值创造</strong></li>
+                    <li class="reveal"><strong>人的价值被放大</strong>，而非替代——主观能动性、创造力、生命能量变得更重要</li>
+                    <li class="reveal">流程、结构、制度变得没那么重要，<strong>组织回到人的原点，人回到生命的原点</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 3: 新组织范式 ==================== -->
+    <section class="slide">
+        <div class="shape shape-1"></div>
+        <span class="number">02</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">新组织范式：人才＞岗位，团队＞组织</h2>
+                <ul class="key-points">
+                    <li class="reveal"><strong>人才＞岗位</strong>：底层素质、通用素质比知识经验更重要，追求人的<strong>不可替代性</strong></li>
+                    <li class="reveal"><strong>团队＞组织</strong>：灵活作战中，团队比组织更重要，自然分工替代前置分工</li>
+                    <li class="reveal"><strong>形态＞结构</strong>：形态随需求而生，结构为效率服务</li>
+                    <li class="reveal">中层不会消失，但必须<strong>两手沾泥</strong>——砍掉脂肪，留下肌肉</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 4: 需求分工 ==================== -->
+    <section class="slide">
+        <div class="shape shape-2"></div>
+        <span class="number">03</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">从职能分工到需求分工，从正规军到野战排</h2>
+                <ul class="key-points">
+                    <li class="reveal">当下是<strong>乱纪元</strong>：打乱仗，打飞靶，打固定靶的方式行不通</li>
+                    <li class="reveal">借用辽沈战役的话：<strong>"打乱了就乱打，只要抓住廖耀湘就行"</strong></li>
+                    <li class="reveal">企业最关键的问题：<strong>你的特种兵在哪里？别动队在哪里？</strong></li>
+                    <li class="reveal">值此变革时期，没有特种兵就难以实现业务突围</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 5: 活人感 ==================== -->
+    <section class="slide">
+        <div class="shape shape-3"></div>
+        <span class="number">04</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">以"活人感"为中心的组织建设</h2>
+                <ul class="key-points">
+                    <li class="reveal">这个时代充斥着形式化的知识和假装，<strong>AI加速了这一进程</strong></li>
+                    <li class="reveal">人们很快会像反感爹味一样，<strong>反感AI味</strong></li>
+                    <li class="reveal"><strong>组织向真</strong>：真的真，真的善，真的美——能不能少一些用脑，多一些用心？</li>
+                    <li class="reveal">无论AI发展到何时，我们终究是一具肉身，<strong>有感情，有心灵</strong>，有且仅拥有此生</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 6: 拥抱AI ==================== -->
+    <section class="slide">
+        <div class="shape shape-1"></div>
+        <span class="number">05</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">立即拥抱AI，同时保持独立思考</h2>
+                <ul class="key-points">
+                    <li class="reveal">2026年了，如果企业<strong>还没把AI纳入绩效考核</strong>，没有启用Agent替代常规流程，就真的落伍了</li>
+                    <li class="reveal">但不是所有人都与AI全然相关——<strong>国央企依然是这个国家的基石</strong></li>
+                    <li class="reveal">如果你在过去三年AI狂潮中没赚到钱，就一定不是一个对趋势敏感的人</li>
+                    <li class="reveal">我们常常<strong>高估短期现象，忽视长期趋势</strong>——OpenClaw不是终局，只是开始的开始</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 7: 组织设计核心 ==================== -->
+    <section class="slide">
+        <div class="shape shape-2"></div>
+        <span class="number">06</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">组织设计核心：放大创始人的美</h2>
+                <ul class="key-points">
+                    <li class="reveal">组织设计始终是<strong>主体性缺失</strong>的——最稀缺的是创始人的天赋、才华、精力、能量</li>
+                    <li class="reveal">如何放大？<strong>围绕创始人的超级天赋构建组织</strong>，让创始人做只有创始人能做的事</li>
+                    <li class="reveal"><strong>收敛问题交给AI</strong>：可重复、确定性、有规律可循的工作</li>
+                    <li class="reveal"><strong>发散问题依然靠人</strong>：面向未来、需要想象力、创造性的工作</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 8: OPC现象 ==================== -->
+    <section class="slide">
+        <div class="shape shape-3"></div>
+        <span class="number">07</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">一人公司是重要现象，但不是底层规律</h2>
+                <ul class="key-points">
+                    <li class="reveal">OPC是AI时代的衍生现象：1个人＋N个Agent成为<strong>更强大的人</strong></li>
+                    <li class="reveal">但OPC不可能成为主流——你的精力是有限的，能力是有边界的</li>
+                    <li class="reveal">不是所有工作都是网球单打，还有篮球赛、足球赛——<strong>即便强如梅西，也需要一支球队</strong></li>
+                    <li class="reveal">组织管理至少有一份基本的诚实和关怀：<strong>因为我们不完美，所以才要在一起</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 9: 贴合业务属性 ==================== -->
+    <section class="slide">
+        <div class="shape shape-1"></div>
+        <span class="number">08</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">组织建设需贴合业务属性、技术属性</h2>
+                <ul class="key-points">
+                    <li class="reveal">科层制只是中性词——企业大了要有基本的分工体系，这是基本道理</li>
+                    <li class="reveal">华为、阿里、字节，不同公司有不同组织方式——<strong>管理模式与业务属性长得很像</strong></li>
+                    <li class="reveal">组织模式存在于<strong>技术的客观约束与创始人的主观认定</strong>之间</li>
+                    <li class="reveal">即便到了AI时代，组织管理也<strong>不存在唯一的道路选择</strong>——你有你的正确，我有我的正确</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 10: 信息处理 ==================== -->
+    <section class="slide">
+        <div class="shape shape-2"></div>
+        <span class="number">09</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">如何处理信息，成为构建组织的重要因素</h2>
+                <ul class="key-points">
+                    <li class="reveal"><strong>决策质量＞决策效率＞执行效率</strong>——环境变化越快，体现越明显</li>
+                    <li class="reveal">康威定律：你选择如何对话，就会长成什么模样</li>
+                    <li class="reveal">AI时代对组织设计者的挑战：<strong>以决策为中心，而非以运营为中心</strong></li>
+                    <li class="reveal">黄仁勋的方法：战略不是文字，是行动；重视<strong>未来成功的早期指标(EIOFS)</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 11: 组织竞争力 ==================== -->
+    <section class="slide">
+        <div class="shape shape-3"></div>
+        <span class="number">10</span>
+        <div class="slide-content">
+            <div class="content-slide">
+                <h2 class="reveal">你的组织竞争力在哪里？</h2>
+                <ul class="key-points">
+                    <li class="reveal">硅谷经验：优秀工程师希望与优秀工程师一起工作——<strong>一旦水平下降，就陷入死亡螺旋</strong></li>
+                    <li class="reveal">顶尖人才的重要性是普通人才<strong>无法以数量取胜</strong>的——事在为人</li>
+                    <li class="reveal">谷歌创办于1998年，AI时代依然风头正劲——<strong>对组织有思考的企业展现可持续性</strong></li>
+                    <li class="reveal">除了给钱、股权、愿景，<strong>还有什么好故事可以说？</strong>他凭什么加入你的组织？</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: QUOTE ==================== -->
+    <section class="slide">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="slide-content">
+            <div class="quote-slide">
+                <p class="quote reveal">
+                    只要人类存在，AI有AI的去处，人就必须要有人的去处。组织管理能否真正回到人本身，便成为AI时代的新挑战。
+                </p>
+                <p class="quote-source reveal">—— 丛龙峰</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 13: END ==================== -->
+    <section class="slide end-slide">
+        <div class="shape shape-3"></div>
+        <div class="shape shape-1"></div>
+        <h1 class="reveal">谢谢</h1>
+        <p class="tagline reveal">曾经的工业时代，组织管理以理性化为核心<br>如今AI把工具化的工作拿走了，只留下人的部分</p>
+    </section>
+
+    <script>
+        /* ===========================================
+           SLIDE PRESENTATION CONTROLLER
+           =========================================== */
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.currentSlide = 0;
+                this.progressBar = document.querySelector('.progress-bar');
+                this.navDotsContainer = document.querySelector('.nav-dots');
+                
+                this.setupIntersectionObserver();
+                this.setupKeyboardNav();
+                this.setupTouchNav();
+                this.setupNavDots();
+                this.updateProgress();
+            }
+
+            setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            this.currentSlide = Array.from(this.slides).indexOf(entry.target);
+                            this.updateProgress();
+                            this.updateNavDots();
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                this.slides.forEach(slide => observer.observe(slide));
+            }
+
+            setupKeyboardNav() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                        e.preventDefault();
+                        this.nextSlide();
+                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        this.prevSlide();
+                    }
+                });
+            }
+
+            setupTouchNav() {
+                let touchStartY = 0;
+                let touchStartX = 0;
+                
+                document.addEventListener('touchstart', (e) => {
+                    touchStartY = e.touches[0].clientY;
+                    touchStartX = e.touches[0].clientX;
+                });
+
+                document.addEventListener('touchend', (e) => {
+                    const touchEndY = e.changedTouches[0].clientY;
+                    const touchEndX = e.changedTouches[0].clientX;
+                    const diffY = touchStartY - touchEndY;
+                    const diffX = touchStartX - touchEndX;
+                    
+                    if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 50) {
+                        if (diffY > 0) this.nextSlide();
+                        else this.prevSlide();
+                    }
+                });
+            }
+
+            setupNavDots() {
+                this.slides.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'nav-dot';
+                    dot.setAttribute('aria-label', `跳转到第 ${index + 1} 页`);
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                    this.navDotsContainer.appendChild(dot);
+                });
+            }
+
+            updateNavDots() {
+                const dots = this.navDotsContainer.querySelectorAll('.nav-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+
+            updateProgress() {
+                const progress = ((this.currentSlide + 1) / this.slides.length) * 100;
+                this.progressBar.style.width = `${progress}%`;
+            }
+
+            nextSlide() {
+                if (this.currentSlide < this.slides.length - 1) {
+                    this.goToSlide(this.currentSlide + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.goToSlide(this.currentSlide - 1);
+                }
+            }
+
+            goToSlide(index) {
+                this.slides[index].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Initialize on load
+        new SlidePresentation();
+    </script>
+</body>
+</html>
