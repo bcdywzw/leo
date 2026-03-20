@@ -11,31 +11,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Generate Pages Index
+
+      - name: Generate index
         run: |
-          INDEX=""
-          
-          for file in pages/*.html; do
-            if [ -f "$file" ]; then
-              filename=$(basename "$file" .html)
-              INDEX="${INDEX}<a href=\"pages/${filename}.html\" class=\"card\">
-        <div class=\"card-title\">${filename}</div>
-        <div class=\"card-desc\">点击查看</div>
-      </a>"
+          echo "INDEX=" > env.sh
+          for f in pages/*.html; do
+            if [ -f "$f" ]; then
+              name=$(basename "$f" .html)
+              echo "<a href=\"pages/$name.html\" class=\"card\"><div class=\"card-title\">$name</div></a>" >> env.sh
             fi
           done
-          
+          source env.sh
           if [ -z "$INDEX" ]; then
-            INDEX="<p style=\"text-align:center;color:#64748b;grid-column:1/-1;\">暂无页面</p>"
+            sed -i 's/{{PAGES_INDEX}}/<p>暂无页面<\/p>/g' index.html
+          else
+            sed -i "s/{{PAGES_INDEX}}/$INDEX/g" index.html
           fi
-          
-          sed -i "s/{{PAGES_INDEX}}/${INDEX}/g" index.html
-          
-      - name: Commit and Push
+
+      - name: Commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add index.html
-          git diff --quiet || git commit -m "Auto update index"
-          git push
+          git add -A
+          git diff --quiet || git commit -m "update" && git push
