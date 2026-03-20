@@ -1,0 +1,48 @@
+name: Auto Update Index
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pages/**'
+      - '!README.md'
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Generate Pages Index
+        run: |
+          INDEX=""
+          
+          for file in pages/*.html; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file" .html)
+              title=$(echo "$filename" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
+              desc="点击查看 $title"
+              date=$(git log -1 --format=%ai "$file" 2>/dev/null | cut -d' ' -f1 || echo "2026-03-20")
+              
+              INDEX="${INDEX}
+      <a href=\"pages/${filename}.html\" class=\"card\">
+        <div class=\"card-title\">${title}</div>
+        <div class=\"card-desc\">${desc}</div>
+        <div class=\"card-date\">📅 ${date}</div>
+      </a>"
+            fi
+          done
+          
+          if [ -z "$INDEX" ]; then
+            INDEX="<p style=\"text-align:center;color:#64748b;grid-column:1/-1;\">暂无页面</p>"
+          fi
+          
+          sed -i "s/{{PAGES_INDEX}}/${INDEX}/g" index.html
+          
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          git diff --quiet || git commit -m "🤖 Auto update index"
+          git push
