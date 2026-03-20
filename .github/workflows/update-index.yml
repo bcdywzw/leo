@@ -4,33 +4,32 @@ on:
   push:
     branches: [main]
     paths:
-      - 'pages/**'
+      - pages/
 
 jobs:
-  update-index:
+  update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Generate index
+      
+      - name: Update index
         run: |
-          echo "INDEX=" > env.sh
-          for f in pages/*.html; do
+          cd pages
+          LIST=""
+          for f in *.html; do
             if [ -f "$f" ]; then
-              name=$(basename "$f" .html)
-              echo "<a href=\"pages/$name.html\" class=\"card\"><div class=\"card-title\">$name</div></a>" >> env.sh
+              NAME="${f%.html}"
+              LIST="${LIST}<a href=\"pages/$f\" class=\"card\"><div class=\"card-title\">$NAME</div></a>"
             fi
           done
-          source env.sh
-          if [ -z "$INDEX" ]; then
-            sed -i 's/{{PAGES_INDEX}}/<p>暂无页面<\/p>/g' index.html
-          else
-            sed -i "s/{{PAGES_INDEX}}/$INDEX/g" index.html
-          fi
-
-      - name: Commit
+          cd ..
+          sed "s|{{PAGES_INDEX}}|$LIST|" index.html > index.new.html
+          mv index.new.html index.html
+          
+      - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A
-          git diff --quiet || git commit -m "update" && git push
+          git add index.html
+          git commit -m "auto update" || exit 0
+          git push
