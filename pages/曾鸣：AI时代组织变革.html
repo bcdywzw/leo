@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从公司到智能组织：AI时代的组织范式变革 | 曾鸣</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Noto Sans SC', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%); }
+        .card-shadow { box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        .section-num { 
+            width: 50px; height: 50px; 
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 24px;
+        }
+        .timeline-dot {
+            width: 12px; height: 12px; 
+            border-radius: 50%; 
+            background: #0891B2;
+            position: absolute;
+            left: -6px;
+            top: 24px;
+        }
+        .highlight-box {
+            border-left: 4px solid #0891B2;
+            background: linear-gradient(90deg, rgba(8,145,178,0.1) 0%, transparent 100%);
+        }
+        .quote-mark {
+            font-size: 80px;
+            line-height: 1;
+            color: rgba(8,145,178,0.2);
+            font-family: Georgia, serif;
+        }
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0891B2, #06B6D4);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .section-num { width: 40px; height: 40px; font-size: 18px; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div class="progress-bar" id="progress"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-slate-800">从公司到智能组织</a>
+            <div class="hidden md:flex gap-6 text-sm">
+                <a href="#intro" class="hover:text-cyan-600 transition">开篇</a>
+                <a href="#origin" class="hover:text-cyan-600 transition">公司起源</a>
+                <a href="#change" class="hover:text-cyan-600 transition">AI变革</a>
+                <a href="#leaps" class="hover:text-cyan-600 transition">组织跃迁</a>
+                <a href="#talent" class="hover:text-cyan-600 transition">创智人才</a>
+                <a href="#os" class="hover:text-cyan-600 transition">组织OS</a>
+                <a href="#cases" class="hover:text-cyan-600 transition">案例</a>
+                <a href="#stages" class="hover:text-cyan-600 transition">五阶段</a>
+                <a href="#conclusion" class="hover:text-cyan-600 transition">结语</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="gradient-bg min-h-[70vh] flex items-center justify-center pt-20">
+        <div class="text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+                从公司到智能组织
+            </h1>
+            <p class="text-2xl md:text-3xl text-cyan-400 mb-8 font-medium">
+                AI时代的组织范式变革
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center text-slate-400 mb-8">
+                <span class="text-lg">曾鸣</span>
+                <span class="hidden md:inline">|</span>
+                <span>曾鸣书院</span>
+                <span class="hidden md:inline">|</span>
+                <span>2026年2月14日</span>
+            </div>
+            <a href="#intro" class="inline-block bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-3 rounded-full font-medium transition-all hover:scale-105">
+                开始阅读 ↓
+            </a>
+        </div>
+    </header>
+
+    <!-- Section 1: Opening -->
+    <section id="intro" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="section-num bg-cyan-600 text-white">开篇</div>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800">一个管理者反复遇到的时刻</h2>
+            </div>
+            
+            <div class="bg-white rounded-2xl card-shadow p-8 md:p-10 mb-8 border-l-4 border-cyan-500">
+                <p class="text-xl md:text-2xl leading-relaxed text-slate-700 mb-6">
+                    <span class="font-bold text-slate-900">AI是场生产力的大变革，也必将催生组织的大变革。</span>
+                </p>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    当AI智能体越来越强大，开始成为人的全面合作者，而不仅仅是工具时，基于传统科层制管理的公司制度将坍塌。我们将迎来智能组织的时代。
+                </p>
+            </div>
+
+            <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-8 md:p-10 text-white">
+                <p class="text-lg md:text-xl leading-relaxed text-center">
+                    组织的核心目标不再是<span class="text-cyan-400 font-bold">提高管理效率</span>，而是架构人和AI高效协同的<span class="text-cyan-400 font-bold">学习系统</span>，推动组织智能的发展，全面提升决策质量。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: The Problem -->
+    <section class="py-20 px-4 bg-slate-100">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">管理者的困境</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <div class="bg-white rounded-2xl card-shadow p-8">
+                    <div class="text-green-500 text-3xl mb-4">✓</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">努力推动变化</h3>
+                    <ul class="space-y-3 text-slate-600">
+                        <li>• 引入新工具</li>
+                        <li>• 强调创新</li>
+                        <li>• 鼓励学习</li>
+                        <li>• AI投入越来越高</li>
+                        <li>• 员工使用AI比例上升</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-2xl card-shadow p-8 border-2 border-red-200">
+                    <div class="text-red-500 text-3xl mb-4">✗</div>
+                    <h3 class="text-xl font-bold text-red-600 mb-4">效果甚微</h3>
+                    <p class="text-slate-600">
+                        企业的实际效能并没有多少改变，而那些年轻的AI创业者们正在以越来越恐怖的速度改变着这个世界。
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-cyan-600 rounded-2xl p-8 text-white text-center">
+                <p class="text-xl md:text-2xl font-bold">
+                    我们如此熟悉的公司制度，才是我们用好AI的<span class="text-yellow-300">最大障碍</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Company's Origin -->
+    <section id="origin" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="section-num bg-slate-800 text-white">01</div>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800">公司的起源</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden">
+                    <div class="bg-slate-800 text-white p-4 text-center font-bold">工业革命前</div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            手工作坊、行会、松散项目协作<br>
+                            师傅带徒弟，靠经验、默契与个人判断
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden">
+                    <div class="bg-cyan-600 text-white p-4 text-center font-bold">工业革命</div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            蒸汽机、纺织机、流水线<br>
+                            工厂制度、岗位分工、层级结构<br>
+                            <span class="text-cyan-600 font-medium">核心价值：压缩不确定性</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden">
+                    <div class="bg-cyan-500 text-white p-4 text-center font-bold">知识经济</div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            目标分解、绩效考核、矩阵结构<br>
+                            IT革命嵌入管理逻辑<br>
+                            公司成为生存环境
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center text-slate-500 italic">
+                <p>最大的挑战不是「如何更聪明」，而是如何不出错、保持一致、可控</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: What AI Changes -->
+    <section id="change" class="py-20 px-4 gradient-bg text-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">AI改变的不仅是效率</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white/10 backdrop-blur rounded-2xl p-8 border border-white/20">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-6 text-center">旧范式</h3>
+                    <div class="space-y-4 text-slate-200">
+                        <div class="text-center">
+                            <p class="font-bold text-lg">判断、推理、创造</p>
+                            <p class="text-slate-400">↓</p>
+                            <p>稀缺、昂贵、不可复制</p>
+                        </div>
+                        <hr class="border-white/20">
+                        <div class="text-center">
+                            <p class="font-bold">组织围绕「人」设计</p>
+                            <p class="text-slate-400">↓</p>
+                            <p>人力规模 + 管理效率</p>
+                        </div>
+                        <hr class="border-white/20">
+                        <div class="text-center">
+                            <p class="text-xl font-bold text-yellow-300">价值 = 把事情做对</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-cyan-600/20 backdrop-blur rounded-2xl p-8 border border-cyan-500/30">
+                    <h3 class="text-2xl font-bold text-cyan-300 mb-6 text-center">新范式</h3>
+                    <div class="space-y-4 text-slate-200">
+                        <div class="text-center">
+                            <p class="font-bold text-lg">智能以零边际成本生产</p>
+                            <p class="text-slate-400">↓</p>
+                            <p>知识性工作被AI系统性接管</p>
+                        </div>
+                        <hr class="border-white/20">
+                        <div class="text-center">
+                            <p class="font-bold">真正稀缺的</p>
+                            <p class="text-cyan-300">高质量判断、价值取舍</p>
+                            <p>原创性探索</p>
+                        </div>
+                        <hr class="border-white/20">
+                        <div class="text-center">
+                            <p class="text-xl font-bold text-yellow-300">价值 = 决定做什么、不做什么</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Four Leaps -->
+    <section id="leaps" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">组织的三次跃迁</h2>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl card-shadow p-6 text-center">
+                    <div class="section-num bg-slate-800 text-white mx-auto mb-4">01</div>
+                    <h3 class="font-bold text-lg mb-2">生产力革命</h3>
+                    <p class="text-sm text-slate-500">机器取代体力<br>工厂取代作坊</p>
+                </div>
+                <div class="bg-white rounded-2xl card-shadow p-6 text-center">
+                    <div class="section-num bg-cyan-600 text-white mx-auto mb-4">02</div>
+                    <h3 class="font-bold text-lg mb-2">管理革命</h3>
+                    <p class="text-sm text-slate-500">协作规模扩大<br>管理成为通用技术</p>
+                </div>
+                <div class="bg-white rounded-2xl card-shadow p-6 text-center">
+                    <div class="section-num bg-cyan-500 text-white mx-auto mb-4">03</div>
+                    <h3 class="font-bold text-lg mb-2">知识革命</h3>
+                    <p class="text-sm text-slate-500">知识工作者登台<br>公司制度定型</p>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl p-6 text-center text-white">
+                    <div class="section-num bg-white text-yellow-600 mx-auto mb-4">04</div>
+                    <h3 class="font-bold text-lg mb-2">创造力革命</h3>
+                    <p class="text-sm text-yellow-100">AI介入判断推理<br>智能零边际成本</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-yellow-100 rounded-xl p-4 text-center">
+                <p class="text-yellow-800 font-medium">正在发生的第四次跃迁：创造力革命</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Why Mismatch -->
+    <section class="py-20 px-4 bg-slate-100">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">为什么公司制度必然失配？</h2>
+            
+            <p class="text-xl text-center text-slate-600 mb-10">
+                公司制度，是为前三次革命设计的
+            </p>
+
+            <div class="space-y-4 mb-8">
+                <div class="bg-white rounded-xl p-6 flex items-start gap-4 card-shadow">
+                    <div class="w-3 h-3 rounded-full bg-cyan-600 mt-2 flex-shrink-0"></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">执行可以被系统接管</h4>
+                        <p class="text-slate-500">→ 管理执行的价值下降</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 flex items-start gap-4 card-shadow">
+                    <div class="w-3 h-3 rounded-full bg-cyan-600 mt-2 flex-shrink-0"></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">判断需要在更靠近现实的地方发生</h4>
+                        <p class="text-slate-500">→ 层级成为摩擦源</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 flex items-start gap-4 card-shadow">
+                    <div class="w-3 h-3 rounded-full bg-cyan-600 mt-2 flex-shrink-0"></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">学习速度决定组织生死</h4>
+                        <p class="text-slate-500">→ 流程和控制成为障碍</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-cyan-600 rounded-2xl p-8 text-white text-center">
+                <p class="text-2xl font-bold">智能组织开始崛起</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Creative Talent -->
+    <section id="talent" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="section-num bg-slate-800 text-white">02</div>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800">从知识工作者到创智人才</h2>
+            </div>
+
+            <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-8 text-white mb-8">
+                <p class="text-xl md:text-2xl text-center font-bold">
+                    创智人才 = 顶尖专家 + 跨界链接者 + 领导者
+                </p>
+            </div>
+
+            <h3 class="text-xl font-bold mb-6 text-center">两个关键变化</h3>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white rounded-2xl card-shadow p-8">
+                    <h4 class="text-xl font-bold text-cyan-600 mb-4">一人多岗 + 一人多能</h4>
+                    <p class="text-slate-600">
+                        一个人借助AI工具，可以做完开发、测试等全部工作，不需要七八个人围绕着你转。
+                    </p>
+                </div>
+                <div class="bg-white rounded-2xl card-shadow p-8">
+                    <h4 class="text-xl font-bold text-cyan-600 mb-4">快速学习能力 > 经验</h4>
+                    <p class="text-slate-600">
+                        AGI消化吸收人类所有已知知识，高认知碾压高经验，个人能力优势被极大地放大。
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-amber-100 rounded-xl p-6 text-center">
+                <p class="text-amber-800 italic text-lg">
+                    「一人将顶千军」—— 没有必要跟这个经理谈怎么分配资源
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Human-AI Collaboration -->
+    <section class="py-20 px-4 gradient-bg text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">从「管理人」到「设计人机协同系统」</h2>
+            
+            <div class="inline-block bg-cyan-600 rounded-full px-10 py-6 mb-10">
+                <p class="text-2xl font-bold">人机协同</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white/10 rounded-xl p-6">
+                    <p class="font-bold text-lg">定义目标与约束</p>
+                </div>
+                <div class="bg-white/10 rounded-xl p-6">
+                    <p class="font-bold text-lg">提供价值判断与优先级</p>
+                </div>
+                <div class="bg-white/10 rounded-xl p-6">
+                    <p class="font-bold text-lg">设计人机协同边界</p>
+                </div>
+                <div class="bg-white/10 rounded-xl p-6">
+                    <p class="font-bold text-lg">对不可形式化的问题负责</p>
+                </div>
+            </div>
+
+            <p class="mt-8 text-slate-400 italic">
+                人类的核心价值不在于「亲自把事情做完」，而在于...
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 9: Organization OS -->
+    <section id="os" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="section-num bg-cyan-600 text-white">03</div>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800">组织OS：未来组织的智能基础设施</h2>
+            </div>
+
+            <div class="bg-gradient-to-r from-cyan-600 to-cyan-500 rounded-2xl p-8 text-white text-center mb-10">
+                <p class="text-2xl font-bold">组织 OS</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl p-6 card-shadow border-l-4 border-slate-800">
+                    <h4 class="font-bold text-lg mb-2">组织记忆</h4>
+                    <p class="text-slate-500 text-sm">决策背景、假设、分歧、失败与复盘，结构化沉淀，成为组织可调用的资产</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow border-l-4 border-cyan-600">
+                    <h4 class="font-bold text-lg mb-2">协同调度</h4>
+                    <p class="text-slate-500 text-sm">人与AI智能体被视为「能力节点」，调用与组合依赖任务需求</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow border-l-4 border-cyan-500">
+                    <h4 class="font-bold text-lg mb-2">反馈与归因</h4>
+                    <p class="text-slate-500 text-sm">持续把真实世界反馈接入系统，理解哪些判断有效、哪些失效</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow border-l-4 border-amber-500">
+                    <h4 class="font-bold text-lg mb-2">治理与边界</h4>
+                    <p class="text-slate-500 text-sm">权限、安全、责任归属、审计机制，自由度越高，越需要清晰的边界</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Case Studies -->
+    <section id="cases" class="py-20 px-4 bg-slate-100">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">前沿创新的样本</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden">
+                    <div class="bg-slate-800 text-white p-4">
+                        <h3 class="text-xl font-bold text-center">Anthropic</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <p class="font-bold text-slate-800">组织形态像蜂巢</p>
+                            <p class="text-slate-500 text-sm">一群快乐的蜜蜂积极工作，贡献自己的想法</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-slate-800">没有中心化决策系统</p>
+                            <p class="text-slate-500 text-sm">没有常规组织结构，靠「vibe」协同</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-cyan-600">Claude Cowork：十天上线</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl card-shadow overflow-hidden">
+                    <div class="bg-cyan-600 text-white p-4">
+                        <h3 class="text-xl font-bold text-center">Nvidia</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <p class="font-bold text-slate-800">灵活组织架构</p>
+                            <p class="text-slate-500 text-sm">没有固定部门或等级制度，60余人的直接下属团队</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-slate-800">极度透明</p>
+                            <p class="text-slate-500 text-sm">每周五清单：手头最重要的五件事</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-cyan-600">从源头对齐决策背景</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Five Stages -->
+    <section id="stages" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">智能组织发展五个阶段</h2>
+            
+            <div class="space-y-4">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-cyan-600 text-white flex items-center justify-center font-bold flex-shrink-0">1</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-lg">个体AI化</h4>
+                        <p class="text-slate-500">更多人用好AI工具</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-slate-400 text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-lg">AI独立工作</h4>
+                        <p class="text-slate-500">AI智能体取代人独立工作，硅基员工上岗</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-slate-400 text-white flex items-center justify-center font-bold flex-shrink-0">3</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-lg">AI协同</h4>
+                        <p class="text-slate-500">不同AI agent之间高效协同，完成复杂任务</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-slate-400 text-white flex items-center justify-center font-bold flex-shrink-0">4</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-lg">人机合作</h4>
+                        <p class="text-slate-500">人类与AI如何配合，权限设定、安全保证</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-slate-400 text-white flex items-center justify-center font-bold flex-shrink-0">5</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-lg">重构人类角色</h4>
+                        <p class="text-slate-500">人的身份感、成就感、驱动力如何重构</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-yellow-100 rounded-xl p-4 text-center">
+                <p class="text-yellow-800 font-medium">真正的AI原生组织，是要同时回答这五个问题</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: Conclusion -->
+    <section id="conclusion" class="py-20 px-4 gradient-bg text-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">结语</h2>
+            
+            <div class="bg-white/10 backdrop-blur rounded-2xl p-8 mb-8">
+                <h3 class="text-xl font-bold text-cyan-400 mb-4">核心观点</h3>
+                <ul class="space-y-3 text-slate-200">
+                    <li>• 智能组织通过不同的运行机制，实现整体效能的数量级跃迁</li>
+                    <li>• 更小规模、更高密度的人机协同系统完成复杂任务</li>
+                    <li>• 学习效果呈持续增强特征，依赖系统学习能力的指数级提升</li>
+                </ul>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white/5 rounded-xl p-6">
+                    <h4 class="font-bold text-cyan-400 mb-2">对创业者</h4>
+                    <p class="text-slate-300 text-sm">
+                        组织不再是「等产品稳定后再考虑」的问题，而是决定学习速度与方向修正能力的底层结构
+                    </p>
+                </div>
+                <div class="bg-white/5 rounded-xl p-6">
+                    <h4 class="font-bold text-cyan-400 mb-2">对管理者</h4>
+                    <p class="text-slate-300 text-sm">
+                        真正的风险，并不在于今天是否转型，而在于是否仍然用工业时代的管理语言，去理解智能时代的组织问题
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-cyan-600 rounded-2xl p-8 text-center">
+                <p class="text-xl md:text-2xl font-bold">
+                    未来能够发光的组织，是能够让人和AI一起共同演化的组织
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-2xl font-bold mb-4">谢谢观看</h3>
+            <p class="text-slate-400 mb-4">曾鸣书院</p>
+            <p class="text-slate-500 text-sm">2026年2月14日</p>
+        </div>
+    </footer>
+
+    <script>
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
