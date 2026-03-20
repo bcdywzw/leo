@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>从公司到智能组织 - 曾鸣</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0f0f0f;
+      --text-primary: #e8e4df;
+      --text-secondary: #9a9590;
+      --accent-warm: #d4a574;
+      --accent-pink: #e8b4b8;
+      --accent-gold: #c9b896;
+      --accent-coral: #e8927c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    .slide {
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      position: relative;
+      padding: clamp(2rem, 4vw, 4rem);
+    }
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60%;
+      height: 60%;
+      background: radial-gradient(circle, var(--accent-pink) 0%, transparent 70%);
+      opacity: 0.25;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .slide::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: -5%;
+      width: 40%;
+      height: 40%;
+      background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%);
+      opacity: 0.2;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .slide-number {
+      position: absolute;
+      left: clamp(2rem, 4vw, 4rem);
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant', serif;
+      font-size: clamp(4rem, 10vw, 12rem);
+      font-weight: 700;
+      color: var(--accent-warm);
+      opacity: 0.15;
+      line-height: 1;
+    }
+    h1 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+    h2 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+    h3 {
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      font-weight: 500;
+      color: var(--accent-warm);
+      margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    p {
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+    .subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+      line-height: 1.8;
+      color: var(--text-secondary);
+      padding-left: 1.5em;
+      position: relative;
+      font-weight: 300;
+    }
+    li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-warm);
+    }
+    /* Title slide */
+    .slide-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .slide-title h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    }
+    .slide-title h1 em {
+      font-style: italic;
+      color: var(--accent-pink);
+    }
+    .slide-title .subtitle {
+      max-width: 600px;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+    }
+    .slide-title .author {
+      margin-top: clamp(2rem, 4vw, 3rem);
+      color: var(--accent-warm);
+      font-size: clamp(0.9rem, 1.3vw, 1rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .vertical-line {
+      position: absolute;
+      left: clamp(2rem, 4vw, 4rem);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 35%;
+      background: linear-gradient(to bottom, var(--accent-warm), transparent);
+    }
+    /* Content slides */
+    .slide-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: clamp(4rem, 10vw, 8rem);
+      padding-right: clamp(1rem, 3vw, 3rem);
+    }
+    .slide-content.center {
+      align-items: center;
+      text-align: center;
+      padding-left: clamp(2rem, 4vw, 4rem);
+    }
+    /* Two column layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      height: 100%;
+      align-items: center;
+    }
+    .col {
+      display: flex;
+      flex-direction: column;
+    }
+    /* Card layout */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(1.5rem, 3vw, 2rem);
+      margin-top: clamp(1rem, 2vw, 1.5rem);
+    }
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: clamp(1.5rem, 2.5vw, 2rem);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    .card-number {
+      font-family: 'Cormorant', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-warm);
+      margin-bottom: 0.8rem;
+    }
+    .card h4 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--text-primary);
+    }
+    .card p {
+      font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    }
+    /* Highlight text */
+    .highlight {
+      color: var(--accent-pink);
+      font-style: italic;
+    }
+    .highlight-warm {
+      color: var(--accent-warm);
+    }
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-warm), var(--accent-pink));
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: clamp(1.5rem, 3vw, 2rem);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.4em;
+      width: 10px;
+      height: 10px;
+      background: var(--accent-warm);
+      border-radius: 50%;
+      transform: translateX(-4px);
+    }
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    .timeline-item h4 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    /* Quote */
+    .quote {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--text-primary);
+      max-width: 800px;
+      text-align: center;
+    }
+    .quote-author {
+      margin-top: 1.5rem;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: clamp(0.9rem, 1.3vw, 1rem);
+      color: var(--accent-warm);
+      font-style: normal;
+      letter-spacing: 0.1em;
+    }
+    /* Progress bar */
+    .progress {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: var(--accent-warm);
+      transition: width 0.3s ease;
+      z-index: 100;
+    }
+    /* Navigation */
+    .nav-hint {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      opacity: 0.5;
+    }
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    @media (max-width: 768px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      .slide-content {
+        padding-left: clamp(2rem, 5vw, 3rem);
+      }
+      .slide-number {
+        font-size: 4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide slide-title">
+  <div class="content">
+    <p class="author animate">曾鸣 · 智能组织</p>
+    <h1 class="animate delay-1">从公司到<em>智能组织</em></h1>
+    <p class="subtitle animate delay-2">AI 时代的组织范式变革</p>
+  </div>
+  <div class="progress" style="width: 4%;"></div>
+</div>
+
+<!-- Slide 2: 引言 -->
+<div class="slide">
+  <span class="slide-number">02</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>引言</h3>
+    <h2>AI 是场生产力的大变革</h2>
+    <p style="margin-top: 1.5rem; max-width: 700px;">当 AI 智能体越来越强大，开始成为人的全面合作者，而不仅仅是工具时，基于传统科层制管理的公司制度将坍塌。</p>
+    <p style="margin-top: 1rem; max-width: 700px;">我们将迎来<strong style="color: var(--accent-pink);">智能组织</strong>的时代</p>
+  </div>
+  <div class="progress" style="width: 8%;"></div>
+</div>
+
+<!-- Slide 3: 管理者的困境 -->
+<div class="slide">
+  <span class="slide-number">03</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>管理者的困境</h3>
+    <h2>一边是焦虑，一边是无力</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-number">01</div>
+        <h4>知道世界在变</h4>
+        <p>AI 能力快速提升，很多事几周就能看到结果</p>
+      </div>
+      <div class="card">
+        <div class="card-number">02</div>
+        <h4>努力推动变化</h4>
+        <p>引入新工具、强调创新、鼓励学习</p>
+      </div>
+      <div class="card">
+        <div class="card-number">03</div>
+        <h4>但效果甚微</h4>
+        <p>AI 投入越来越高，实际效能却没多少改变</p>
+      </div>
+    </div>
+  </div>
+  <div class="progress" style="width: 12%;"></div>
+</div>
+
+<!-- Slide 4: 核心洞察 -->
+<div class="slide">
+  <span class="slide-number">04</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content center">
+    <h3>核心洞察</h3>
+    <h2>AI 改变的不是效率，<br>而是<em style="color: var(--accent-pink);">价值从哪里产生</em></h2>
+    <p style="margin-top: 2rem; max-width: 700px;">过去：价值来自"把事情做对"<br>未来：价值来自"决定做什么、不做什么"</p>
+  </div>
+  <div class="progress" style="width: 16%;"></div>
+</div>
+
+<!-- Slide 5: 智能的生产方式改变 -->
+<div class="slide">
+  <span class="slide-number">05</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>根本变化</h3>
+    <h2>智能本身的生产方式改变了</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>过去：智能稀缺</h4>
+        <p>判断、推理、创造依赖于个体经验和长期训练，稀缺且昂贵</p>
+      </div>
+      <div class="timeline-item">
+        <h4>现在：智能规模化</h4>
+        <p>AI 让智能以接近零边际成本被生产出来</p>
+      </div>
+      <div class="timeline-item">
+        <h4>未来：人类稀缺的是判断力</h4>
+        <p>真正稀缺的是高质量判断、价值取舍与原创性探索</p>
+      </div>
+    </div>
+  </div>
+  <div class="progress" style="width: 20%;"></div>
+</div>
+
+<!-- Slide 6: 组织的三次跃迁 -->
+<div class="slide">
+  <span class="slide-number">06</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>历史视角</h3>
+    <h2>组织的三次跃迁</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-number">01</div>
+        <h4>生产力革命</h4>
+        <p>机器取代体力，工厂取代作坊</p>
+      </div>
+      <div class="card">
+        <div class="card-number">02</div>
+        <h4>管理革命</h4>
+        <p>协作规模扩大，管理成为通用技术</p>
+      </div>
+      <div class="card">
+        <div class="card-number">03</div>
+        <h4>知识革命</h4>
+        <p>知识工作者登上舞台</p>
+      </div>
+      <div class="card">
+        <div class="card-number">04</div>
+        <h4>创造力革命</h4>
+        <p style="color: var(--accent-pink);">正在发生 →</p>
+      </div>
+    </div>
+  </div>
+  <div class="progress" style="width: 24%;"></div>
+</div>
+
+<!-- Slide 7: 第一次跃迁 -->
+<div class="slide">
+  <span class="slide-number">07</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>第一次跃迁</h3>
+    <h2>生产力革命：工厂制度</h2>
+    <p style="margin-bottom: 1.5rem;">蒸汽机、纺织机、流水线出现后，人类第一次需要大规模组织起来</p>
+    <ul>
+      <li>核心挑战：如何不出错、保持一致、可控</li>
+      <li>工厂制度、岗位分工、层级结构、流程控制由此成形</li>
+      <li>组织的本质是一台机器，人是机器的一部分</li>
+      <li>管理的任务：让这台机器稳定运转</li>
+    </ul>
+  </div>
+  <div class="progress" style="width: 28%;"></div>
+</div>
+
+<!-- Slide 8: 第二次跃迁 -->
+<div class="slide">
+  <span class="slide-number">08</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>第二次跃迁</h3>
+    <h2>管理革命</h2>
+    <p style="margin-bottom: 1.5rem;">企业规模扩大，跨部门、跨区域协作成为常态</p>
+    <ul>
+      <li>管理本身开始成为一门专业</li>
+      <li>目标管理、职能制、事业部制、矩阵结构</li>
+      <li>核心问题：协作规模扩大时，组织如何依然可控？</li>
+      <li>现代公司制度在这一阶段被彻底定型</li>
+    </ul>
+  </div>
+  <div class="progress" style="width: 32%;"></div>
+</div>
+
+<!-- Slide 9: 第三次跃迁 -->
+<div class="slide">
+  <span class="slide-number">09</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>第三次跃迁</h3>
+    <h2>知识革命</h2>
+    <p style="margin-bottom: 1.5rem;">IT 革命推动人类社会进入知识密集型阶段</p>
+    <ul>
+      <li>德鲁克提出"知识工作者"概念</li>
+      <li>期权制度、项目制、扁平化尝试</li>
+      <li>但公司制度并未被颠覆——因为知识生产仍依赖人类</li>
+      <li>管理依然围绕"人"展开</li>
+    </ul>
+  </div>
+  <div class="progress" style="width: 36%;"></div>
+</div>
+
+<!-- Slide 10: 第四次跃迁 -->
+<div class="slide">
+  <span class="slide-number">10</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content center">
+    <h3>正在发生</h3>
+    <h2>第四次跃迁：<br><em style="color: var(--accent-pink);">创造力革命</em></h2>
+    <p style="margin-top: 2rem; max-width: 700px;">AI 开始直接介入判断、推理、组合和生成知识本身</p>
+    <p style="margin-top: 1rem;">智能从"稀缺"变得"规模化"</p>
+  </div>
+  <div class="progress" style="width: 40%;"></div>
+</div>
+
+<!-- Slide 11: 公司制度失配 -->
+<div class="slide">
+  <span class="slide-number">11</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>关键结论</h3>
+    <h2>公司制度必然失配</h2>
+    <p style="margin-bottom: 1.5rem;">公司制度，是为前三次革命设计的。而今天，我们已经进入了一个<strong style="color: var(--accent-pink);">它从未被设计来应对的阶段</strong></p>
+    <ul>
+      <li>执行可以被系统接管</li>
+      <li>判断需要在更靠近现实的地方发生</li>
+      <li>学习速度决定组织生死</li>
+      <li>层级、流程和控制开始成为摩擦源</li>
+    </ul>
+  </div>
+  <div class="progress" style="width: 44%;"></div>
+</div>
+
+<!-- Slide 12: 创智人才 -->
+<div class="slide">
+  <span class="slide-number">12</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>人的变化</h3>
+    <h2>从知识工作者到创智人才</h2>
+    <div class="cards">
+      <div class="card">
+        <h4>顶尖专家</h4>
+        <p>创造新知识，拓展人类知识的边界</p>
+      </div>
+      <div class="card">
+        <h4>跨界链接者</h4>
+        <p>打破原有认知结构，创造新连接</p>
+      </div>
+      <div class="card">
+        <h4>领导者</h4>
+        <p>推动协同和决策</p>
+      </div>
+    </div>
+  </div>
+  <div class="progress" style="width: 48%;"></div>
+</div>
+
+<!-- Slide 13: 超级个体 -->
+<div class="slide">
+  <span class="slide-number">13</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>超级个体</h3>
+    <h2>一人多岗 + 一人一能 = <em style="color: var(--accent-pink);">一将顶千军</em></h2>
+    <ul>
+      <li>借助 AI 工具，一个人可以完成开发、测试全部流程</li>
+      <li>不受传统专业限制，可以跨界做事</li>
+      <li>快速学习能力使"高认知碾压高经验"</li>
+      <li>管理成本急剧下降，组织规模大幅缩减</li>
+      <li>"一个人的独角兽"成为可能</li>
+    </ul>
+  </div>
+  <div class="progress" style="width: 52%;"></div>
+</div>
+
+<!-- Slide 14: 从管理人到设计系统 -->
+<div class="slide">
+  <span class="slide-number">14</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>管理范式转变</h3>
+    <h2>从"管理人"到<br>"<em style="color: var(--accent-pink);">设计人机协同系统</em>"</h2>
+    <p style="margin-top: 1.5rem; margin-bottom: 1.5rem;">当 AI 开始承担执行性、规则性工作后：</p>
+    <ul>
+      <li>关键瓶颈从"人是否愿意做"变为"人机如何协同"</li>
+      <li>人类核心价值：定义目标、提供判断、设计边界</li>
+      <li>管理者变成"协同系统的设计者"</li>
+    </ul>
+  </div>
+  <div class="progress" style="width: 56%;"></div>
+</div>
+
+<!-- Slide 15: 组织OS -->
+<div class="slide">
+  <span class="slide-number">15</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>基础设施</h3>
+    <h2>组织 OS：未来组织的<br>智能基础设施</h2>
+    <div class="cards">
+      <div class="card">
+        <h4>组织记忆</h4>
+        <p>决策背景、假设、失败经验结构化沉淀</p>
+      </div>
+      <div class="card">
+        <h4>协同调度</h4>
+        <p>人和 AI 智能体都是"能力节点"，按需调用</p>
+      </div>
+      <div class="card">
+        <h4>反馈与归因</h4>
+        <p>持续把真实反馈接入系统，优化行动</p>
+      </div>
+      <div class="card">
+        <h4>治理与边界</h4>
+        <p>权限、安全、责任归属、审计机制</p>
+      </div>
+    </div>
+  </div>
+  <div class="progress" style="width: 60%;"></div>
+</div>
+
+<!-- Slide 16: 组织OS目标 -->
+<div class="slide">
+  <span class="slide-number">16</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content center">
+    <h3>组织 OS 的目标</h3>
+    <h2>建立<em style="color: var(--accent-pink);">组织的数字孪生</em></h2>
+    <p style="margin-top: 2rem; max-width: 700px;">个人的经验、知识、认知、能力在工作过程中自然地被组织吸收、转化、运用，成为组织的知识库</p>
+    <p style="margin-top: 1.5rem;">组织系统提供完整的 <strong style="color: var(--accent-warm);">context for everything</strong></p>
+  </div>
+  <div class="progress" style="width: 64%;"></div>
+</div>
+
+<!-- Slide 17: 案例Anthropic -->
+<div class="slide">
+  <span class="slide-number">17</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>创新样本</h3>
+    <h2>Anthropic：AI 原生组织</h2>
+    <ul>
+      <li>组织像蜂巢：快乐的蜜蜂，积极工作，贡献想法</li>
+      <li>每个人努力减少自我意识，尽可能透明</li>
+      <li>没有中心化决策系统，没有常规组织结构</li>
+      <li>真正的协同靠"vibe"——内部人都理解的信号</li>
+      <li>想法被认同后，资源快速集中</li>
+      <li>围坐在"篝火"旁共创，即兴创作</li>
+    </ul>
+    <p style="margin-top: 1.5rem; color: var(--accent-pink);">Claude Cowork：想法产生后十天就上线</p>
+  </div>
+  <div class="progress" style="width: 68%;"></div>
+</div>
+
+<!-- Slide 18: 案例Nvidia -->
+<div class="slide">
+  <span class="slide-number">18</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>创新样本</h3>
+    <h2>Nvidia：传统大公司的转型</h2>
+    <ul>
+      <li>灵活的组织架构，没有固定部门或等级制度</li>
+      <li>黄仁勋直接领导 60 人的高管团队</li>
+      <li>没有 COO、CTO、CMO 等常规角色</li>
+      <li>强调极度透明：确保每人接收同样信息</li>
+      <li>每周五员工提交五件最重要的事</li>
+    </ul>
+    <p style="margin-top: 1.5rem; color: var(--accent-warm);">核心目的：了解员工当下的判断，分布式判断提供决策启发</p>
+  </div>
+  <div class="progress" style="width: 72%;"></div>
+</div>
+
+<!-- Slide 19: 发展五阶段 -->
+<div class="slide">
+  <span class="slide-number">19</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>发展路径</h3>
+    <h2>智能组织发展五个阶段</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>第一步：个体用好 AI 工具</h4>
+        <p>大部分人正在努力，但不是未来</p>
+      </div>
+      <div class="timeline-item">
+        <h4>第二步：AI 自主完成工作</h4>
+        <p>AI 智能体独立工作，硅基员工上岗</p>
+      </div>
+      <div class="timeline-item">
+        <h4>第三步：AI agent 协同</h4>
+        <p>不同 agent 之间高效协作</p>
+      </div>
+      <div class="timeline-item">
+        <h4>第四步：人机混合协作</h4>
+        <p>人与 AI 如何配合，权限、安全设定</p>
+      </div>
+      <div class="timeline-item">
+        <h4>第五步：人的身份重构</h4>
+        <p style="color: var(--accent-pink);">人如何在硅基员工时代发挥作用</p>
+      </div>
+    </div>
+  </div>
+  <div class="progress" style="width: 76%;"></div>
+</div>
+
+<!-- Slide 20: 核心观点 -->
+<div class="slide">
+  <span class="slide-number">20</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content center">
+    <h3>核心观点</h3>
+    <h2>真正的 AI 原生组织，<br>要回答<em style="color: var(--accent-pink);">全部五个问题</em></h2>
+    <p style="margin-top: 2rem;">而不仅仅是"如何用好 AI 工具"</p>
+    <p style="margin-top: 1rem; color: var(--accent-warm);">组织 OS 就是实现第 3、4、5 步<br>需要的技术基础设施</p>
+  </div>
+  <div class="progress" style="width: 80%;"></div>
+</div>
+
+<!-- Slide 21: 结语 -->
+<div class="slide">
+  <span class="slide-number">21</span>
+  <div class="vertical-line"></div>
+  <div class="content slide-content">
+    <h3>结语</h3>
+    <h2>未来组织</h2>
+    <p style="margin-bottom: 1.5rem;">是能够持续共创、持续演进、持续增强的智能网络</p>
+    <blockquote class="quote">
+      "未来能够发光的组织，<br>是能够让人和 AI 一起共同演化的组织"
+      <div class="quote-author">—— Sam Altman</div>
+    </blockquote>
+  </div>
+  <div class="progress" style="width: 84%;"></div>
+</div>
+
+<!-- Slide 22: 致谢 -->
+<div class="slide slide-title">
+  <div class="content">
+    <p class="author animate">曾鸣</p>
+    <h1 class="animate delay-1" style="font-size: clamp(2rem, 4vw, 3rem);">谢谢观看</h1>
+    <p class="subtitle animate delay-2" style="margin-top: 2rem;">智能组织 · 2026</p>
+  </div>
+  <div class="progress" style="width: 100%;"></div>
+</div>
+
+<div class="nav-hint">← → 翻页 | 空格下一页</div>
+
+<script>
+  // Simple navigation
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  
+  function showSlide(n) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === n ? 'flex' : 'none';
+    });
+    currentSlide = n;
+    // Update progress bar
+    const progress = ((n + 1) / slides.length) * 100;
+    document.querySelectorAll('.progress').forEach(p => {
+      p.style.width = progress + '%';
+    });
+  }
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+      e.preventDefault();
+      if (currentSlide < slides.length - 1) {
+        showSlide(currentSlide + 1);
+      }
+    } else if (e.key === 'ArrowLeft') {
+      if (currentSlide > 0) {
+        showSlide(currentSlide - 1);
+      }
+    }
+  });
+  
+  // Initialize
+  showSlide(0);
+</script>
+</body>
+</html>
