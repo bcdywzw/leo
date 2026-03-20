@@ -1,24 +1,29 @@
-name: Auto Update Index
+name: Auto Index
+
 on:
   push:
     branches: [main]
-    paths:
-      - pages/
+    paths: [pages/]
+
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Generate index
-        run: python3 -c "
-import os,glob
-cards=[f'<a href=\"pages/{os.path.basename(f)}\" class=\"card\"><div class=\"card-title\">{os.path.basename(f).replace(\".html\",\"\")}</div></a>'for f in sorted(glob.glob('pages/*.html'))]
-c=open('index.html').read()
-open('index.html','w').write(c.replace('{{PAGES_INDEX}}',''.join(cards)))
-"
+      
+      - name: Update index
+        run: |
+          ls pages/*.html > /tmp/files || true
+          CONTENT=""
+          for f in pages/*.html; do
+            NAME=$(basename "$f" .html)
+            CONTENT="$CONTENT<a href=\"$f\" class=\"card\"><div class=\"card-title\">$NAME</div></a>"
+          done
+          sed -i "s|{{PAGES_INDEX}}|$CONTENT|g" index.html
+          
       - name: Commit
         run: |
-          git config --local user.email "a@g.com"
-          git config --local user.name "Bot"
-          git add index.html
-          git diff --quiet || git commit -m "auto" && git push
+          git config user.email "a@b.com"
+          git config user.name "bot"
+          git add -A
+          git diff --cached --quiet || git commit -m "update" && git push
