@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿里巴巴北斗七星选人法 | Ali Star Selection Model</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --secondary: #F7C59F;
+            --accent: #2EC4B6;
+            --dark: #1A1A2E;
+            --light: #FFF5F0;
+            --star-gold: #FFD700;
+            --star-orange: #FF8C42;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* 动态背景 */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(240, 147, 251, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(46, 196, 182, 0.1) 0%, transparent 70%);
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* 头部 */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            color: var(--star-gold);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFD700 0%, #FF8C42 50%, #FF6B35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            max-width: 800px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 3rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* 金字塔可视化 */
+        .pyramid-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #fff 0%, #a8edea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pyramid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .pyramid-level {
+            display: flex;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.6s forwards;
+        }
+
+        .pyramid-level:nth-child(1) { animation-delay: 0.1s; }
+        .pyramid-level:nth-child(2) { animation-delay: 0.2s; }
+        .pyramid-level:nth-child(3) { animation-delay: 0.3s; }
+        .pyramid-level:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pyramid-card {
+            padding: 1.5rem 2.5rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pyramid-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .pyramid-card:hover::before {
+            opacity: 1;
+        }
+
+        .pyramid-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .level-4 .pyramid-card {
+            background: var(--gradient-1);
+            min-width: 200px;
+        }
+
+        .level-3 .pyramid-card {
+            background: var(--gradient-2);
+            min-width: 160px;
+        }
+
+        .level-2 .pyramid-card {
+            background: var(--gradient-3);
+            min-width: 140px;
+        }
+
+        .level-1 .pyramid-card {
+            background: var(--gradient-4);
+            min-width: 300px;
+        }
+
+        .pyramid-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pyramid-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .level-tag {
+            position: absolute;
+            left: -120px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        /* 详细卡片区域 */
+        .details-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+
+        .competency-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .competency-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--card-gradient);
+        }
+
+        .competency-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .competency-card[data-index="0"] { --card-gradient: var(--gradient-4); }
+        .competency-card[data-index="1"] { --card-gradient: var(--gradient-2); }
+        .competency-card[data-index="2"] { --card-gradient: var(--gradient-2); }
+        .competency-card[data-index="3"] { --card-gradient: var(--gradient-2); }
+        .competency-card[data-index="4"] { --card-gradient: var(--gradient-3); }
+        .competency-card[data-index="5"] { --card-gradient: var(--gradient-3); }
+        .competency-card[data-index="6"] { --card-gradient: var(--gradient-1); }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            background: var(--card-gradient);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .card-title-group h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .card-definition {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid;
+            border-image: var(--card-gradient) 1;
+        }
+
+        .card-definition p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .elements-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 1rem;
+        }
+
+        .elements-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .element-tag {
+            background: rgba(255,255,255,0.08);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .element-tag:hover {
+            background: rgba(255,255,255,0.15);
+            transform: scale(1.05);
+        }
+
+        /* 特色区域 */
+        .highlight-quote {
+            background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(247,197,159,0.1) 100%);
+            border: 1px solid rgba(255,107,53,0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .highlight-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .highlight-quote p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            padding-left: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .highlight-quote .author {
+            text-align: right;
+            margin-top: 1rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .competency-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pyramid-card {
+                min-width: auto !important;
+                padding: 1rem 1.5rem;
+            }
+            
+            .level-tag {
+                display: none;
+            }
+        }
+
+        /* 动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="stars" id="stars"></div>
+
+    <header>
+        <div class="logo">★ Alibaba Star Model ★</div>
+        <h1>北斗七星选人法</h1>
+        <p class="subtitle">阿里铁军销售人才胜任力模型</p>
+        <p class="hero-description">
+            阿里巴巴中供铁军打造的顶尖销售人才画像，从价值观底层到能力顶端，
+            七个维度构建金字塔式选人体系，帮助企业识别和培养高绩效销售人才。
+        </p>
+        <div class="scroll-indicator" onclick="document.getElementById('pyramid').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-chevron-down" style="font-size: 2rem; color: var(--star-gold);"></i>
+        </div>
+    </header>
+
+    <section class="pyramid-section" id="pyramid">
+        <h2 class="section-title">金字塔结构模型</h2>
+        <div class="pyramid-container">
+            <div class="pyramid-level level-4">
+                <div class="pyramid-card" onclick="scrollToCard(6)">
+                    <span class="level-tag">能力层 · 顶端</span>
+                    <div class="pyramid-icon">💡</div>
+                    <div class="pyramid-label">悟性</div>
+                </div>
+            </div>
+            <div class="pyramid-level level-3">
+                <div class="pyramid-card" onclick="scrollToCard(4)">
+                    <span class="level-tag">个性特质层</span>
+                    <div class="pyramid-icon">⚡</div>
+                    <div class="pyramid-label">又猛又持久</div>
+                </div>
+                <div class="pyramid-card" onclick="scrollToCard(5)">
+                    <div class="pyramid-icon">🤝</div>
+                    <div class="pyramid-label">OPEN</div>
+                </div>
+            </div>
+            <div class="pyramid-level level-2">
+                <div class="pyramid-card" onclick="scrollToCard(1)">
+                    <span class="level-tag">驱动力层</span>
+                    <div class="pyramid-icon">🎯</div>
+                    <div class="pyramid-label">要性</div>
+                </div>
+                <div class="pyramid-card" onclick="scrollToCard(2)">
+                    <div class="pyramid-icon">❤️</div>
+                    <div class="pyramid-label">喜欢干销售</div>
+                </div>
+                <div class="pyramid-card" onclick="scrollToCard(3)">
+                    <div class="pyramid-icon">🎖️</div>
+                    <div class="pyramid-label">目标忠诚度</div>
+                </div>
+            </div>
+            <div class="pyramid-level level-1">
+                <div class="pyramid-card" onclick="scrollToCard(0)">
+                    <span class="level-tag">价值观层 · 底层保障</span>
+                    <div class="pyramid-icon">⚖️</div>
+                    <div class="pyramid-label">诚信</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="details-section" id="details">
+        <h2 class="section-title">七大胜任力详解</h2>
+        <div class="competency-grid">
+            <!-- 诚信 -->
+            <div class="competency-card" data-index="0">
+                <div class="card-header">
+                    <div class="card-icon">⚖️</div>
+                    <div class="card-title-group">
+                        <h3>诚信</h3>
+                        <span class="card-subtitle">价值观层 · 底层保障</span>
+                    </div>
+                </div>
+                <div class="card-definition">
+                    <p>诚实正直，言行坦荡。"诚"指真诚之心，"信"意为不欺骗他人。这是销售员最底层的特质，犹如金字塔的地基。</p>
+                </div>
+                <div class="highlight-quote">
+                    <p>一个人如果不诚信，犹如空中楼阁，他所做的一切都是虚幻。</p>
+                    <div class="author">— 阿里铁军</div>
+                </div>
+                <div class="elements-title">胜任力要素</div>
+                <div class="elements-list">
+                    <span class="element-tag">✦ 真诚之心</span>
+                    <span class="element-tag">✦ 言行一致</span>
+                    <span class="element-tag">✦ 客户真诚</span>
+                    <span class="element-tag">✦ 责任感</span>
+                </div>
+            </div>
+
+            <!-- 要性 -->
+            <div class="competency-card" data-index="1">
+                <div class="card-header">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title-group">
+                        <h3>要性</h3>
+                        <span class="card-subtitle">驱动力层</span>
+                    </div>
+                </div>
+                <div class="card-definition">
+                    <p>对财富积累、事业成功、他人肯定、个人成长等各方面的强烈欲望和目标。是镌刻在阿里人血液里的重要DNA。</p>
+                </div>
+                <div class="elements-title">三个层次</div>
+                <div class="elements-list">
+                    <span class="element-tag" style="background: rgba(255,107,53,0.2);">★ 想要</span>
+                    <span class="element-tag" style="background: rgba(255,140,66,0.2);">★★ 很想要</span>
+                    <span class="element-tag" style="background: rgba(255,215,0,0.2);">★★★ 我一定就要</span>
+                </div>
+                <div class="elements-title" style="margin-top: 1rem;">胜任力要素</div>
+                <div class="elements-list">
+                    <span class="element-tag">✦ 成就欲望</span>
+                    <span class="element-tag">✦ 财富动力</span>
+                    <span class="element-tag">✦ 成功渴望</span>
+                    <span class="element-tag">✦ 成长需求</span>
+                    <span class="element-tag">✦ 肯定需求</span>
+                </div>
+            </div>
+
+            <!-- 喜欢干销售 -->
+            <div class="competency-card" data-index="2">
+                <div class="card-header">
+                    <div class="card-icon">❤️</div>
+                    <div class="card-title-group">
+                        <h3>喜欢干销售</h3>
+                        <span class="card-subtitle">驱动力层 · 销售职业认同</span>
+                    </div>
+                </div>
+                <div class="card-definition">
+                    <p>认为销售工作有意义、有价值、值得投入，视销售为自己的职业和事业，对销售工作有兴趣并能体验乐趣。</p>
+                </div>
+                <div class="highlight-quote">
+                    <p>兴趣和喜欢是最好的动力，一个人只有喜欢做一件事，才会为了这件事去努力奋斗，并享受奋斗的过程。</p>
+                </div>
+                <div class="elements-title">胜任力要素</div>
+                <div class="elements-list">
+                    <span class="element-tag">✦ 价值认同</span>
+                    <span class="element-tag">✦ 职业定位</span>
+                    <span class="element-tag">✦ 兴趣驱动</span>
+                    <span class="element-tag">✦ 自我匹配</span>
+                    <span class="element-tag">✦ 事前准备</span>
+                    <span class="element-tag">✦ 享受过程</span>
+                </div>
+            </div>
+
+            <!-- 目标忠诚度 -->
+            <div class="competency-card" data-index="3">
+                <div class="card-header">
+                    <div class="card-icon">🎖️</div>
+                    <div class="card-title-group">
+                        <h3>目标忠诚度</h3>
+                        <span class="card-subtitle">驱动力层 · 目标承诺及追求</span>
+                    </div>
+                </div>
+                <div class="card-definition">
+                    <p>设置具有挑战性和可行性的短期和长期目标，保持对目标的忠诚和专注，通过踏实工作致力于目标的实现。</p>
+                </div>
+                <div class="highlight-quote">
+                    <p>必须高调地把目标喊出来，让别人帮你，让别人来监督你。</p>
+                    <div class="author">— 阿里土话</div>
+                </div>
+                <div class="elements-title">胜任力要素</div>
+                <div class="elements-list">
+                    <span class="element-tag">✦ 目标设定能力</span>
+                    <span class="element-tag">✦ 目标专注</span>
+                    <span class="element-tag">✦ 踏实执行</span>
+                    <span class="element-tag">✦ 过程追踪</span>
+                    <span class="element-tag">✦ 结果导向</span>
+                    <span class="element-tag">✦ 自我监督</span>
+                </div>
+            </div>
+
+            <!-- 又猛又持久 -->
+            <div class="competency-card" data-index="4">
+                <div class="card-header">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-title-group">
+                        <h3>又猛又持久</h3>
+                        <span class="card-subtitle">个性特质层 · 韧性及勤奋</span>
+                    </div>
+                </div>
+                <div class="card-definition">
+                    <p>阿里的土话，指具有吃苦耐劳、勤奋务实的个人品质，抗压性高、坚持性强，能正确对待挫折和困难。</p>
+                </div>
+                <div class="highlight-quote">
+                    <p>阿里巴巴要做到既有乌龟的耐力，又有兔子的速度。</p>
+                    <div class="author">— 马云</div>
+                </div>
+                <div class="elements-title">胜任力要素</div>
+                <div class="elements-list">
+                    <span class="element-tag">✦ 吃苦耐劳</span>
+                    <span class="element-tag">✦ 勤奋务实</span>
+                    <span class="element-tag">✦ 抗压能力</span>
+                    <span class="element-tag">✦ 坚持性强</span>
+                    <span class="element-tag">✦ 情绪管理</span>
+                    <span class="element-tag">✦ 乐观面对</span>
+                    <span class="element-tag">✦ 工作激情</span>
+                    <span class="element-tag">✦ 状态保持</span>
+                </div>
+            </div>
+
+            <!-- OPEN -->
+            <div class="competency-card" data-index="5">
+                <div class="card-header">
+                    <div class="card-icon">🤝</div>
+                    <div class="card-title-group">
+                        <h3>OPEN</h3>
+                        <span class="card-subtitle">个性特质层 · 外向及亲和</span>
+                    </div>
+                </div>
+                <div class="card-definition">
+                    <p>乐于与人相处并易于相处，有热情、热心，在人际交往中不自我封闭，愿意表露和分享，善于建立和保持良好人际关系。</p>
+                </div>
+                <div class="elements-title">胜任力要素</div>
+                <div class="elements-list">
+                    <span class="element-tag">✦ 乐于相处</span>
+                    <span class="element-tag">✦ 热情热心</span>
+                    <span class="element-tag">✦ 开放心态</span>
+                    <span class="element-tag">✦ 愿意分享</span>
+                    <span class="element-tag">✦ 人际建立</span>
+                    <span class="element-tag">✦ 和谐共处</span>
+                    <span class="element-tag">✦ 客户转化</span>
+                </div>
+            </div>
+
+            <!-- 悟性 -->
+            <div class="competency-card" data-index="6">
+                <div class="card-header">
+                    <div class="card-icon">💡</div>
+                    <div class="card-title-group">
+                        <h3>悟性</h3>
+                        <span class="card-subtitle">能力层 · 金字塔顶端</span>
+                    </div>
+                </div>
+                <div class="card-definition">
+                    <p>学习及思维能力，通过对工作反思总结、与他人交流、自我学习等方式，对工作知识经验进行吸收、归纳、演绎和迁移。</p>
+                </div>
+                <div class="highlight-quote">
+                    <p>没有功劳哪里来的苦劳。</p>
+                    <div class="author">— 阿里土话</div>
+                </div>
+                <div class="elements-title">胜任力要素</div>
+                <div class="elements-list">
+                    <span class="element-tag">✦ 反思总结</span>
+                    <span class="element-tag">✦ 交流学习能力</span>
+                    <span class="element-tag">✦ 自我学习能力</span>
+                    <span class="element-tag">✦ 知识吸收</span>
+                    <span class="element-tag">✦ 演绎迁移</span>
+                    <span class="element-tag">✦ 技能提升</span>
+                    <span class="element-tag">✦ 适应性增强</span>
+                    <span class="element-tag">✦ 结果导向</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="details-section" style="background: rgba(255,255,255,0.02); border-radius: 40px; margin: 4rem auto; padding: 4rem 2rem;">
+        <h2 class="section-title">模型应用价值</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; padding: 2rem;">
+                <div style="width: 80px; height: 80px; background: var(--gradient-1); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🎯</div>
+                <h3 style="margin-bottom: 1rem;">选人标准清晰</h3>
+                <p style="color: rgba(255,255,255,0.6); line-height: 1.6;">每个胜任力都有明确的定义和可观察的行为指标，避免主观臆断</p>
+            </div>
+            <div style="text-align: center; padding: 2rem;">
+                <div style="width: 80px; height: 80px; background: var(--gradient-2); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">📊</div>
+                <h3 style="margin-bottom: 1rem;">面试可量化</h3>
+                <p style="color: rgba(255,255,255,0.6); line-height: 1.6;">采用1分/3分/5分的行为锚定评分法，让面试评估更科学</p>
+            </div>
+            <div style="text-align: center; padding: 2rem;">
+                <div style="width: 80px; height: 80px; background: var(--gradient-3); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🚀</div>
+                <h3 style="margin-bottom: 1rem;">培养有方向</h3>
+                <p style="color: rgba(255,255,255,0.6); line-height: 1.6;">知道每个销售需要提升的具体要素，制定针对性培养方案</p>
+            </div>
+            <div style="text-align: center; padding: 2rem;">
+                <div style="width: 80px; height: 80px; background: var(--gradient-4); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🏆</div>
+                <h3 style="margin-bottom: 1rem;">文化落地</h3>
+                <p style="color: rgba(255,255,255,0.6); line-height: 1.6;">将抽象的价值观转化为具体的行为要求，让团队文化可执行</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">
+            阿里巴巴北斗七星选人法 | Ali Star Selection Model<br>
+            <span style="opacity: 0.6;">Built with ❤️ for Leo</span>
+        </p>
+    </footer>
+
+    <script>
+        // 生成星星背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const count = 100;
+            
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.opacity = Math.random() * 0.8 + 0.2;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // 滚动到指定卡片
+        function scrollToCard(index) {
+            const cards = document.querySelectorAll('.competency-card');
+            if (cards[index]) {
+                cards[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                cards[index].style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    cards[index].style.transform = '';
+                }, 300);
+            }
+        }
+
+        // 滚动动画
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.competency-card').forEach(card => {
+                card.classList.add('fade-in');
+                observer.observe(card);
+            });
+        }
+
+        // 鼠标跟随效果
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.querySelector('.bg-animation').style.transform = 
+                `translate(${(x - 0.5) * 20}px, ${(y - 0.5) * 20}px)`;
+        });
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            setupIntersectionObserver();
+        });
+    </script>
+</body>
+</html>
