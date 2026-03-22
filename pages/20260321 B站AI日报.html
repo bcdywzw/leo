@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B站AI内容日报 - 2026-03-21</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; color: white; margin-bottom: 30px; padding: 20px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .header p { font-size: 1.1em; opacity: 0.9; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2em; font-weight: bold; color: #667eea; }
+        .stat-label { color: #666; margin-top: 5px; }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .video-cover {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+        .video-info { padding: 15px; }
+        .video-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .video-author { display: flex; align-items: center; gap: 5px; }
+        .video-stats { display: flex; gap: 15px; }
+        .stat-item { display: flex; align-items: center; gap: 3px; }
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            margin-top: 8px;
+        }
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 B站AI内容日报</h1>
+            <p>报告时间：2026-03-21 | 数据来源：哔哩哔哩</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">42</div>
+                <div class="stat-label">相关视频</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0万+</div>
+                <div class="stat-label">总播放量</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">41</div>
+                <div class="stat-label">UP主</div>
+            </div>
+        </div>
+
+        <div class="video-grid">
+
+            <a href="https://www.bilibili.com/video/BV1UQPZzqEN6" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【AI教程】目前B站最全最细的AI大模型零基础全套教程，2026最新版，包含所有干货！七天就能从小白到大神！少走99%的弯路！存下吧！很难找全的！！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【AI教程】目前B站最全最细的AI大模型零基础全套教程，2026最新版，包含所有干货！七天就能从小白到大神！少走99%的弯路！存下吧！很难找全的！！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 大模型开发</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1E7wtzaEdq" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="从 LLM 到 Agent Skill，一期视频带你打通底层逻辑！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">从 LLM 到 Agent Skill，一期视频带你打通底层逻辑！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 马克的技术工作坊</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="AI短剧导演课（编导/分镜/生成/后期制作）" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">AI短剧导演课（编导/分镜/生成/后期制作）</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 AI短剧导演-彭老师</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1QMSjBREzr" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="AI可以取代我，那我的意义是？" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">AI可以取代我，那我的意义是？</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 影视飓风</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1AcwczbEkN" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="OpenClaw到底是什么？一只龙虾如何搅动整个AI圈！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">OpenClaw到底是什么？一只龙虾如何搅动整个AI圈！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 糖果果的未来要发光</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1qZSLBYEpa" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【整整600集】清华大学196小时讲完的AI人工智能从入门到精通全套教程，全程干货无废话！学完变大佬！这还学不会，我退出IT圈！机器学习-深度学习-opencv" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【整整600集】清华大学196小时讲完的AI人工智能从入门到精通全套教程，全程干货无废话！学完变大佬！这还学不会，我退出IT圈！机器学习-深度学习-opencv</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 IT界扛霸子</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1ZZPSzhEVP" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="西游记之三打白骨精【B站AI创作大赛-开放赛道】" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">西游记之三打白骨精【B站AI创作大赛-开放赛道】</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 Mars_火星老王</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1uNk1YxEJQ" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【全748集】目前B站最全最细的AI大模型零基础全套教程，2025最新版，包含所有干货！七天就能从小白到大神！少走99%的弯路！存下吧！很难找全的！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【全748集】目前B站最全最细的AI大模型零基础全套教程，2025最新版，包含所有干货！七天就能从小白到大神！少走99%的弯路！存下吧！很难找全的！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 大模型官方课程</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1CirqBmEme" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="马云最新演讲对AI的看法，全程高能！眼光格局前瞻性无人能及！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">马云最新演讲对AI的看法，全程高能！眼光格局前瞻性无人能及！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 B站知识学院</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1yZA7z7E3U" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="无限制生图！ai焚决指令分享，亲测可用！各位兄弟注意身体！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">无限制生图！ai焚决指令分享，亲测可用！各位兄弟注意身体！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 无限制AI出图</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV11NHJzTEbE" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【全30集】即梦+豆包+剪映，2小时快速掌握AI视频制作技巧，手把手教你从0到1制作AI短片！小白适用！学完即接单，带你玩转AI视频赛道！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【全30集】即梦+豆包+剪映，2小时快速掌握AI视频制作技巧，手把手教你从0到1制作AI短片！小白适用！学完即接单，带你玩转AI视频赛道！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 AI视频教程_</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1jEAaz3E6K" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="一个视频搞懂OpenClaw！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">一个视频搞懂OpenClaw！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 林亦LYi</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1NzwZzfEEF" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="AI奇谈 | 止戈为武：流金谷无“鹰”家" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">AI奇谈 | 止戈为武：流金谷无“鹰”家</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 央视网</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1uxA8zZEvG" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="字节AI编程分享会：2026年末人类程序员灭绝倒计时：99.9%代码将由AI接管" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">字节AI编程分享会：2026年末人类程序员灭绝倒计时：99.9%代码将由AI接管</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 剑桥图灵子</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1AAeAzmE1Y" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="[AI MV]这个大厅真空旷啊" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">[AI MV]这个大厅真空旷啊</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 AI大不大</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1BjFfz2Edh" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【ai短剧】末日寒潮我有移动堡垒我怕谁（全50集）" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【ai短剧】末日寒潮我有移动堡垒我怕谁（全50集）</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 北岛seaof</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1PnAJzHE5B" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="如果每个人的愿望都能实现，世界会变成什么样子？【B站AI创作大赛-开放赛道】" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">如果每个人的愿望都能实现，世界会变成什么样子？【B站AI创作大赛-开放赛道】</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 伊介书生</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1Nxn2zyEz2" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="帮大家整理了很多我自己学习 AI 受益的学习资源" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">帮大家整理了很多我自己学习 AI 受益的学习资源</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 阿菜在瓶行宇宙</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1wFfvB7EfH" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="三年后AI吞噬一切，你准备好了吗？" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">三年后AI吞噬一切，你准备好了吗？</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 柏年说</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1HXE9zHE5S" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="强推！2025最新李永乐老师【人工智能AI课程】带你2小时全面了解电脑如何像人一样思考，带你学习人工智能前沿技术!人工智能,机器学习/深度学习/神经网络/AI" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">强推！2025最新李永乐老师【人工智能AI课程】带你2小时全面了解电脑如何像人一样思考，带你学习人工智能前沿技术!人工智能,机器学习/深度学习/神经网络/AI</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 从零学AI_李沐</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1rvPrz5ESn" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【AI短剧】“豆包+即梦+剪映”2小时快速掌握真人短剧制作技巧（2026最新）多主体一致性控制，人物微表情控制，手把手教你、、玩转AI影视赛道！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【AI短剧】“豆包+即梦+剪映”2小时快速掌握真人短剧制作技巧（2026最新）多主体一致性控制，人物微表情控制，手把手教你、、玩转AI影视赛道！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 AIGC视频制作教学</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1feaAzBELy" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="你喜欢哪张床｜合集｜AI｜助眠｜解压｜触发音｜情景模拟" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">你喜欢哪张床｜合集｜AI｜助眠｜解压｜触发音｜情景模拟</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 月亮不装睡_助眠</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1s7wezdEBS" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="AI机器人伴侣，会是婚姻的终极杀手吗？" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">AI机器人伴侣，会是婚姻的终极杀手吗？</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 晓涵哥来了</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1DY4tzmEnQ" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="“大胆狂徒，光天化日之下，竟敢......”" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">“大胆狂徒，光天化日之下，竟敢......”</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 性感AI在线发图</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1wqJkzoEY7" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【进来看看AI拍激情戏有多难！】超搞笑+养眼福利花絮：看看人工智能有多智障系列（第4期）" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【进来看看AI拍激情戏有多难！】超搞笑+养眼福利花絮：看看人工智能有多智障系列（第4期）</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 筑梦点灯</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1kUsmzHEqf" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="女角色蹲坐姿势" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">女角色蹲坐姿势</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 Siwen_Ai</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1RrwVzUEct" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="如果给你10亿，你会跳进哪个泳池？" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">如果给你10亿，你会跳进哪个泳池？</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 Nooduh</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1n1NgzcEzv" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="12星座领取你的专属日料主题过夜床" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">12星座领取你的专属日料主题过夜床</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 _AiSmR</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1KUwazoEXH" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【AI教程】全B站最详细AI大模型零基础全套教程，2026最新版，包含所有干货！七天就能从小白到大神！学完即就业，带你玩转AI！存下吧！很难找全的！！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【AI教程】全B站最详细AI大模型零基础全套教程，2026最新版，包含所有干货！七天就能从小白到大神！学完即就业，带你玩转AI！存下吧！很难找全的！！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 智泊AI</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1wEPHzsETi" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="大黄AI剧《红墙3.0》肉搏戏啊啊啊啊啊啊啊啊！！【B站AI创作大赛-开放赛道】" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">大黄AI剧《红墙3.0》肉搏戏啊啊啊啊啊啊啊啊！！【B站AI创作大赛-开放赛道】</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 Hawking大黄</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1pQAszvEF1" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="老高与小茉最新视频解密【2027预言】2027会变成什么样，未来是否会被机器人AI取代？" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">老高与小茉最新视频解密【2027预言】2027会变成什么样，未来是否会被机器人AI取代？</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 老高小茉新视频</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1J5A1zHEDG" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【ai附身】同学聚会惨遭羞辱？那我只好夺舍你的未婚妻了！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【ai附身】同学聚会惨遭羞辱？那我只好夺舍你的未婚妻了！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 鲨鱼青椒肉丝</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV175cQzZEqq" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="科比参加《奔跑吧牢大2》（完整版）【B站AI创作大赛-开放赛道】" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">科比参加《奔跑吧牢大2》（完整版）【B站AI创作大赛-开放赛道】</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 修1</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1bSeszRE5m" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【AI MV]酒店爱情诱惑 深夜约会【亚洲美女】" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【AI MV]酒店爱情诱惑 深夜约会【亚洲美女】</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 大视界666</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1A3cczZEf6" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="改变视频行业的AI，快来了(但有点恐怖)" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">改变视频行业的AI，快来了(但有点恐怖)</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 影视飓风</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1LdftBREZM" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="Seedance 2.0彻底失控！好莱坞要完了！" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">Seedance 2.0彻底失控！好莱坞要完了！</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 诸葛成佛丶</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1uMNFz1EG4" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="新AI欧美腐剧《我的贵族F1男友》全集 中字" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">新AI欧美腐剧《我的贵族F1男友》全集 中字</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 木禾冰</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1jGZMB8Et4" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="23分钟版本《霍去病》AI短片 李锋导演【B站AI创作大赛-开放赛道】" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">23分钟版本《霍去病》AI短片 李锋导演【B站AI创作大赛-开放赛道】</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 黑马AIGC</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV18twWzuEsz" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="【即梦5.0教程】目前B站最新最全的即梦AI5.0保姆级教程！新手必看！！AI视提示词+AI绘画+图生视频+完整流程详解！七天就能从小白变大神！少走99%的弯路" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">【即梦5.0教程】目前B站最新最全的即梦AI5.0保姆级教程！新手必看！！AI视提示词+AI绘画+图生视频+完整流程详解！七天就能从小白变大神！少走99%的弯路</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 AI视频制作工作流</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1cxwezHEfE" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="AI漫剧零基础入门教程，2026最新AI视频生成+AI短剧+豆包+即梦+ComfyUI教程+AI动态漫制作+AI动画教程漫剧全流程，AI教程从零基础入门到精通" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">AI漫剧零基础入门教程，2026最新AI视频生成+AI短剧+豆包+即梦+ComfyUI教程+AI动态漫制作+AI动画教程漫剧全流程，AI教程从零基础入门到精通</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 AI视频生成-</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/BV1ppZuBrE7B" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="新春福利" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">新春福利</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 李小小小钊</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+            <a href="https://www.bilibili.com/video/" target="_blank" class="video-card">
+                <img class="video-cover" src="" alt="余博士的珠宝AI设计课" onerror="this.style.display='none'">
+                <div class="video-info">
+                    <div class="video-title">余博士的珠宝AI设计课</div>
+                    <div class="video-meta">
+                        <div class="video-author">👤 地质大学博士说AI</div>
+                        <div class="video-stats">
+                            <div class="stat-item">▶ 0</div>
+                            <div class="stat-item">👍 0</div>
+                        </div>
+                    </div>
+                    <span class="tag">AI</span>
+                </div>
+            </a>
+
+        </div>
+        
+        <div class="footer">
+            <p>报告由 OpenClaw 自动生成 | 点击卡片可跳转到B站观看</p>
+            <p>生成时间：2026-03-22 08:45:34</p>
+        </div>
+    </div>
+</body>
+</html>
