@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第13章 镜像法则 - 领导力21法则</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e8e4df;
+            --text-secondary: #9a9590;
+            --accent-warm: #d4a574;
+            --accent-pink: #e8b4b8;
+            --accent-gold: #c9b896;
+            --accent-rose: #c77d7d;
+            --accent-sage: #8fae8b;
+            --font-display: 'Cormorant', serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
+            --slide-padding: clamp(2rem, 5vw, 5rem);
+            --content-gap: clamp(1rem, 2.5vw, 2.5rem);
+            --element-gap: clamp(0.5rem, 1.5vw, 1.5rem);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.8s;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow-x: hidden; }
+        html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+
+        .slide { width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; scroll-snap-align: start; display: flex; flex-direction: column; position: relative; }
+        .slide-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-height: 100%; overflow: hidden; padding: var(--slide-padding); }
+
+        .decorative-circle { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; pointer-events: none; z-index: 0; }
+        .circle-1 { width: clamp(300px, 40vw, 600px); height: clamp(300px, 40vw, 600px); background: linear-gradient(135deg, var(--accent-warm), var(--accent-pink)); top: -10%; right: -10%; }
+        .circle-2 { width: clamp(200px, 30vw, 400px); height: clamp(200px, 30vw, 400px); background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose)); bottom: -5%; left: -5%; opacity: 0.3; }
+        .circle-3 { width: clamp(150px, 25vw, 350px); height: clamp(150px, 25vw, 350px); background: linear-gradient(135deg, var(--accent-sage), var(--accent-gold)); top: 50%; left: 10%; opacity: 0.2; }
+
+        h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 7vw, 6rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+        h2 { font-family: var(--font-display); font-size: clamp(1.75rem, 4.5vw, 3.5rem); font-weight: 600; line-height: 1.2; margin-bottom: var(--content-gap); }
+        h3 { font-family: var(--font-display); font-size: clamp(1.1rem, 2.5vw, 1.75rem); font-weight: 600; color: var(--accent-warm); margin-bottom: var(--element-gap); }
+        p { font-size: clamp(0.9rem, 1.8vw, 1.2rem); color: var(--text-secondary); max-width: 900px; }
+        .subtitle { font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--accent-gold); font-weight: 300; margin-top: var(--element-gap); }
+
+        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: clamp(1.2rem, 2.5vw, 2rem); backdrop-filter: blur(10px); position: relative; z-index: 1; }
+        .card-accent { border-left: 3px solid var(--accent-warm); }
+        .card-gold { border-left: 3px solid var(--accent-gold); }
+        .card-rose { border-left: 3px solid var(--accent-rose); }
+        .card-sage { border-left: 3px solid var(--accent-sage); }
+
+        .quote { font-family: var(--font-display); font-size: clamp(1.3rem, 2.8vw, 2.2rem); font-style: italic; color: var(--text-primary); padding-left: clamp(1.2rem, 2.5vw, 2.5rem); border-left: 3px solid var(--accent-warm); margin: var(--content-gap) 0; line-height: 1.4; }
+        .quote-author { font-family: var(--font-body); font-size: clamp(0.85rem, 1.4vw, 1rem); font-style: normal; color: var(--accent-gold); margin-top: var(--element-gap); }
+
+        .tag { display: inline-block; font-size: clamp(0.7rem, 1.1vw, 0.85rem); padding: clamp(0.3rem, 0.7vw, 0.5rem) clamp(0.8rem, 1.4vw, 1.2rem); border-radius: 20px; background: rgba(212, 165, 116, 0.2); color: var(--accent-warm); margin-right: var(--element-gap); margin-bottom: var(--element-gap); }
+        .tag-gold { background: rgba(201, 184, 150, 0.2); color: var(--accent-gold); }
+        .tag-rose { background: rgba(199, 125, 125, 0.2); color: var(--accent-rose); }
+        .tag-sage { background: rgba(143, 174, 139, 0.2); color: var(--accent-sage); }
+
+        .feature-list { list-style: none; display: flex; flex-direction: column; gap: clamp(0.4rem, 1vw, 0.8rem); }
+        .feature-list li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: clamp(0.85rem, 1.4vw, 1.05rem); color: var(--text-primary); }
+        .feature-list li::before { content: "◆"; color: var(--accent-warm); font-size: 0.6em; margin-top: 0.35em; flex-shrink: 0; }
+        .feature-list.numbered li::before { content: none; }
+        .feature-list.numbered { counter-reset: item; }
+        .feature-list.numbered li { counter-increment: item; }
+        .feature-list.numbered li::after { content: counter(item); display: flex; align-items: center; justify-content: center; width: clamp(1.3rem, 2vw, 1.6rem); height: clamp(1.3rem, 2vw, 1.6rem); background: var(--accent-warm); color: var(--bg-primary); border-radius: 50%; font-size: clamp(0.7rem, 1vw, 0.85rem); font-weight: 600; flex-shrink: 0; }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--content-gap); }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--element-gap); }
+        .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--element-gap); }
+        @media (max-width: 900px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+        .title-slide { text-align: center; justify-content: center; align-items: center; }
+        .title-slide .decorative-circle { position: absolute; }
+        .title-slide .circle-1 { width: 80vmin; height: 80vmin; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.15; }
+
+        .case-study-header { display: flex; align-items: center; gap: var(--element-gap); margin-bottom: var(--content-gap); flex-wrap: wrap; }
+        .case-study-badge { font-size: clamp(0.75rem, 1.2vw, 0.9rem); padding: clamp(0.4rem, 0.9vw, 0.6rem) clamp(1rem, 2vw, 1.5rem); background: var(--accent-rose); color: var(--bg-primary); border-radius: 20px; font-weight: 600; }
+        .case-study-badge.positive { background: var(--accent-sage); }
+
+        .highlight-box { background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(232, 180, 184, 0.1)); border-radius: 12px; padding: clamp(1rem, 2vw, 1.5rem); margin: var(--element-gap) 0; }
+        .key-point { display: flex; align-items: flex-start; gap: var(--element-gap); padding: var(--element-gap) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .key-point:last-child { border-bottom: none; }
+        .key-point-icon { font-size: clamp(1.3rem, 2.5vw, 2rem); flex-shrink: 0; }
+        .key-point-text h4 { font-family: var(--font-display); font-size: clamp(0.95rem, 1.6vw, 1.2rem); color: var(--text-primary); margin-bottom: clamp(0.2rem, 0.4vw, 0.3rem); }
+        .key-point-text p { font-size: clamp(0.8rem, 1.2vw, 0.95rem); color: var(--text-secondary); margin: 0; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity var(--duration-normal) var(--ease-out-expo), transform var(--duration-normal) var(--ease-out-expo); }
+        .slide.visible .reveal { opacity: 1; transform: translateY(0); }
+        .reveal:nth-child(1) { transition-delay: 0.1s; }
+        .reveal:nth-child(2) { transition-delay: 0.2s; }
+        .reveal:nth-child(3) { transition-delay: 0.3s; }
+        .reveal:nth-child(4) { transition-delay: 0.4s; }
+        .reveal:nth-child(5) { transition-delay: 0.5s; }
+        .reveal:nth-child(6) { transition-delay: 0.6s; }
+
+        .reveal-stagger > * { opacity: 0; transform: translateY(30px); transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo); }
+        .slide.visible .reveal-stagger > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+        .slide.visible .reveal-stagger > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+        .slide.visible .reveal-stagger > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+        .slide.visible .reveal-stagger > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+        .slide.visible .reveal-stagger > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+        .slide.visible .reveal-stagger > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+
+        .nav-dots { position: fixed; right: clamp(0.8rem, 1.5vw, 1.5rem); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 6px; z-index: 1000; }
+        .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: all 0.3s ease; }
+        .nav-dot:hover { background: rgba(255, 255, 255, 0.6); }
+        .nav-dot.active { background: var(--accent-warm); transform: scale(1.4); }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent-warm), var(--accent-gold)); z-index: 1000; transition: width 0.3s ease; }
+
+        @media (max-height: 700px) { :root { --slide-padding: clamp(1.2rem, 3vw, 2.5rem); --content-gap: clamp(0.7rem, 1.8vw, 1.3rem); } }
+        @media (max-height: 600px) { :root { --slide-padding: clamp(0.8rem, 2.5vw, 1.5rem); --content-gap: clamp(0.5rem, 1.3vw, 0.8rem); } .nav-dots { display: none; } }
+        @media (max-width: 600px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } html { scroll-behavior: auto; } }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <nav class="nav-dots" id="navDots"></nav>
+
+    <!-- SLIDE 1: 封面 -->
+    <section class="slide title-slide" data-slide="1">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="decorative-circle circle-3"></div>
+        <div class="slide-content">
+            <span class="tag reveal">约翰·C. 麦克斯维尔</span>
+            <h1 class="reveal">第13章<br>镜像法则</h1>
+            <p class="subtitle reveal">看到别人怎么做，大家也会怎么做</p>
+            <p class="reveal" style="margin-top: var(--content-gap); color: var(--text-secondary);">领导力21法则</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: 法则定义 -->
+    <section class="slide" data-slide="2">
+        <div class="decorative-circle circle-1"></div>
+        <div class="slide-content">
+            <span class="tag reveal">核心法则</span>
+            <h2 class="reveal">什么是镜像法则？</h2>
+            <div class="quote reveal">
+                "领导者树立好榜样之后，他们的下属就会跟着模仿他们的行为，从而取得成功。"
+            </div>
+            <p class="reveal" style="margin-top: var(--content-gap);">
+                领导者通过对愿景的有效示范把镜像变成了现实。<br>
+                <strong style="color: var(--text-primary);">你怎么做，下属就会跟着怎么做</strong>——这就是镜像法则。
+            </p>
+            <div class="highlight-box reveal">
+                <p style="color: var(--text-primary); font-size: clamp(0.95rem, 1.6vw, 1.15rem);">
+                    <strong style="color: var(--accent-warm);">核心洞察：</strong>
+                    下属总是在观察领导者的所作所为。他们不仅听你说什么，更看你做什么。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: 案例引入 - 兄弟连 -->
+    <section class="slide" data-slide="3">
+        <div class="decorative-circle circle-2"></div>
+        <div class="slide-content">
+            <span class="tag tag-rose reveal">真实案例</span>
+            <h2 class="reveal">《兄弟连》- 领导力的研究样本</h2>
+            <p class="reveal">导演史蒂文·斯皮尔伯格和汤姆·汉克斯制作的HBO电视剧，记录了二战中E连101空降部队的故事。</p>
+            <div class="grid-3 reveal" style="margin-top: var(--content-gap);">
+                <div class="card card-rose">
+                    <h3>📍 背景</h3>
+                    <p style="font-size: clamp(0.8rem, 1.2vw, 0.95rem);">严酷的陆军士兵训练，英勇战斗的精英部队</p>
+                </div>
+                <div class="card card-accent">
+                    <h3>👥 领导者</h3>
+                    <p style="font-size: clamp(0.8rem, 1.2vw, 0.95rem);">军士长、上校、上尉，不同的领导风格</p>
+                </div>
+                <div class="card card-sage">
+                    <h3>⚡ 结果</h3>
+                    <p style="font-size: clamp(0.8rem, 1.2vw, 0.95rem);">领导出色时产生积极效果，体现在战役和战争结果上</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: 错误的镜像 - 索博 -->
+    <section class="slide" data-slide="4">
+        <div class="decorative-circle circle-1" style="opacity: 0.2;"></div>
+        <div class="slide-content">
+            <div class="case-study-header">
+                <span class="case-study-badge">❌ 负面领导</span>
+                <span class="tag tag-rose">错误镜像</span>
+            </div>
+            <h2 class="reveal">赫伯特·索博：言行不一</h2>
+            <div class="reveal-stagger" style="display: flex; flex-direction: column; gap: var(--element-gap);">
+                <div class="card card-rose">
+                    <h3>🎭 他的做法</h3>
+                    <ul class="feature-list">
+                        <li>训练士兵时非常残酷、专制</li>
+                        <li>对士兵比其他连的任何长官都要严厉</li>
+                        <li>随意处罚士兵，不让他们通过考核</li>
+                    </ul>
+                </div>
+                <div class="card card-rose">
+                    <h3>⚠️ 致命问题</h3>
+                    <ul class="feature-list">
+                        <li>对士兵毫无怜悯之心</li>
+                        <li><strong>自己却不能通过空降兵身体测试</strong></li>
+                        <li>训练中没有达到他要求手下士兵达到的水平</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: 索博的失败 -->
+    <section class="slide" data-slide="5">
+        <div class="decorative-circle circle-2" style="opacity: 0.2;"></div>
+        <div class="slide-content">
+            <h2 class="reveal">索博的结局</h2>
+            <div class="quote reveal">
+                "在E连准备参加诺曼底登陆时，许多人甚至抽签决定谁在战斗中打死索博。"
+            </div>
+            <div class="highlight-box reveal">
+                <p style="color: var(--text-primary); font-size: clamp(0.95rem, 1.5vw, 1.1rem);">
+                    <strong style="color: var(--accent-rose);">📖 经典事件：</strong><br>
+                    夜间演习时，索博偷走了"手下士兵"的枪来教训他们。<br>
+                    结果——<strong>他跑错了营地，偷的是F连的枪！</strong><br>
+                    <span style="color: var(--text-secondary);">手下的人都嘲笑他，跟他作对。</span>
+                </p>
+            </div>
+            <div class="card reveal" style="margin-top: var(--element-gap); border-left-color: var(--accent-gold);">
+                <p style="color: var(--accent-gold); font-size: clamp(0.95rem, 1.5vw, 1.15rem);">
+                    <strong>教训：</strong>当领导者不能以身作则时，他不仅失去尊重，更失去了领导力。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: 另一个错误镜像 - 戴克 -->
+    <section class="slide" data-slide="6">
+        <div class="decorative-circle circle-3" style="opacity: 0.15;"></div>
+        <div class="slide-content">
+            <div class="case-study-header">
+                <span class="case-study-badge">❌ 负面领导</span>
+                <span class="tag tag-rose">逃避责任</span>
+            </div>
+            <h2 class="reveal">戴克中尉：不见踪影的指挥官</h2>
+            <div class="grid-2 reveal">
+                <div class="card card-rose">
+                    <h3>😔 他的问题</h3>
+                    <ul class="feature-list">
+                        <li>有政治背景但没有战斗经验</li>
+                        <li>常常"出去散步"消失很长时间</li>
+                        <li>在最需要作决定的时候不见踪影</li>
+                        <li>不作决定，逃避责任</li>
+                    </ul>
+                </div>
+                <div class="card card-rose">
+                    <h3>💥 结果</h3>
+                    <ul class="feature-list">
+                        <li>队伍中没有一个人会尊敬他</li>
+                        <li>当上头要求指挥进攻佛伊镇时</li>
+                        <li>惨败而回</li>
+                        <li>随即被解除指挥权</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="reveal" style="margin-top: var(--element-gap); color: var(--accent-rose);">
+                领导者的缺席，就是给团队传递最坏的镜像。
+            </p>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: 正确的镜像 - 温特斯 -->
+    <section class="slide" data-slide="7">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2" style="opacity: 0.2;"></div>
+        <div class="slide-content">
+            <div class="case-study-header">
+                <span class="case-study-badge positive">✓ 正面领导</span>
+                <span class="tag tag-sage">优秀典范</span>
+            </div>
+            <h2 class="reveal">迪克·温特斯：长官在前</h2>
+            <p class="reveal">二战中最优秀的战斗指挥官，被授予优异服务十字勋章。</p>
+            <div class="grid-2 reveal" style="margin-top: var(--content-gap);">
+                <div class="card card-sage">
+                    <h3>🏆 他的领导哲学</h3>
+                    <ul class="feature-list">
+                        <li>不断帮助士兵发挥最高水平</li>
+                        <li>身先士卒，树立榜样</li>
+                        <li>和士兵们一起冒险</li>
+                        <li>长官在前——带领整支队伍冲锋最前面</li>
+                    </ul>
+                </div>
+                <div class="card card-sage">
+                    <h3>⚔️ 卡瑞登之战</h3>
+                    <ul class="feature-list">
+                        <li>士兵被德军机关枪压制</li>
+                        <li>温特斯冒着枪林弹雨鼓励士兵</li>
+                        <li>跳到路中间，子弹擦身而过</li>
+                        <li>士兵们站起来向前移动，最终获胜</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 8: 温特斯的精神遗产 -->
+    <section class="slide" data-slide="8">
+        <div class="decorative-circle circle-2"></div>
+        <div class="slide-content">
+            <h2 class="reveal">温特斯的领导遗产</h2>
+            <div class="quote reveal">
+                "我可能不是最好的指挥官，但是我一直努力向这个方向前进。"
+            </div>
+            <p class="quote-author reveal">—— 迪克·温特斯，2006年</p>
+            <div class="highlight-box reveal">
+                <div class="key-point">
+                    <span class="key-point-icon">👁️</span>
+                    <div class="key-point-text">
+                        <h4>士兵们的观察</h4>
+                        <p>"我永远不会忘记你站在路中间的样子。你深深地鼓舞了我。"</p>
+                    </div>
+                </div>
+                <div class="key-point">
+                    <span class="key-point-icon">🎯</span>
+                    <div class="key-point-text">
+                        <h4>温特斯的自我要求</h4>
+                        <p>仔细分析每个战斗形势、优化处理所有资源、在压力下思考、身先士卒带领士兵战斗</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card reveal" style="margin-top: var(--element-gap); border-left-color: var(--accent-sage);">
+                <p style="color: var(--accent-sage);">
+                    <strong>历史学家的评价：</strong>"真正让E连与其他精英部队不同的是他们的领导力。"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 9: 镜像法则核心 -->
+    <section class="slide" data-slide="9">
+        <div class="decorative-circle circle-1"></div>
+        <div class="slide-content">
+            <span class="tag reveal">核心洞察</span>
+            <h2 class="reveal">把镜像变成现实</h2>
+            <div class="grid-3 reveal">
+                <div class="card card-accent">
+                    <h3>🎯 任务</h3>
+                    <p style="color: var(--text-primary);">提供了目标<br><em style="color: var(--text-secondary);">回答：为什么？</em></p>
+                </div>
+                <div class="card card-gold">
+                    <h3>🪞</h3>
+                    <p style="color: var(--text-primary);">提供了镜像<br><em style="color: var(--text-secondary);">回答：是什么？</em></p>
+                </div>
+                <div class="card card-sage">
+                    <h3>📋 战略</h3>
+                    <p style="color: var(--text-primary);">提供了计划<br><em style="color: var(--text-secondary);">回答：怎么样？</em></p>
+                </div>
+            </div>
+            <div class="quote reveal" style="margin-top: var(--content-gap);">
+                "领导者必须要成为梦想家。你的领导水平越高，你的工作就越多是关于预见未来的事情。"
+            </div>
+            <p class="quote-author reveal">—— 汉斯·芬左</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 10: 思想与实践 -->
+    <section class="slide" data-slide="10">
+        <div class="decorative-circle circle-2"></div>
+        <div class="slide-content">
+            <h2 class="reveal">领导者的双重特质</h2>
+            <div class="grid-2 reveal">
+                <div class="card card-accent">
+                    <h3>💭 思想</h3>
+                    <p style="color: var(--text-primary); margin-bottom: var(--element-gap);">领导者很有思想</p>
+                    <ul class="feature-list">
+                        <li>看得更长远</li>
+                        <li>预见将要发生的事</li>
+                        <li>清除必须要做的事</li>
+                    </ul>
+                </div>
+                <div class="card card-sage">
+                    <h3>⚡ 实际</h3>
+                    <p style="color: var(--text-primary); margin-bottom: var(--element-gap);">但都非常实际</p>
+                    <ul class="feature-list">
+                        <li>没有付诸行动的想法不能成功</li>
+                        <li>自己承担责任</li>
+                        <li>帮助下属们采取行动</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight-box reveal" style="margin-top: var(--content-gap);">
+                <p style="color: var(--accent-gold); font-size: clamp(0.95rem, 1.5vw, 1.15rem);">
+                    <strong>✨ 关键：</strong>领导者通过对愿景的有效示范，把镜像变成了现实。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 11: 不确定性与领导力 -->
+    <section class="slide" data-slide="11">
+        <div class="decorative-circle circle-3"></div>
+        <div class="slide-content">
+            <h2 class="reveal">在不确定性中领导</h2>
+            <div class="quote reveal">
+                "出现不确定的情况并不表示领导力弱。相反，这种情况反而表示更需要领导。"
+            </div>
+            <p class="quote-author reveal">—— 安迪·斯坦利</p>
+            <div class="card reveal" style="margin-top: var(--content-gap); border-left-color: var(--accent-gold);">
+                <ul class="feature-list">
+                    <li>更多的责任意味着要处理越来越多的无形的事情</li>
+                    <li>更多复杂的不确定性</li>
+                    <li>领导者可以处理不确定的事情，但他们不能让镜像不清晰</li>
+                    <li><strong style="color: var(--accent-rose);">人们不会追随这样的领导</strong></li>
+                </ul>
+            </div>
+            <div class="highlight-box reveal">
+                <p style="color: var(--text-primary);">
+                    <strong style="color: var(--accent-warm);">💡 在困难出现时：</strong><br>
+                    由于不确定性变得很高，人人都变得很慌乱，这时下属们最需要从他们的领导者那里得到一幅<strong>清晰的镜像</strong>。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 12: 领导者愿景的典范 1 -->
+    <section class="slide" data-slide="12">
+        <div class="decorative-circle circle-1"></div>
+        <div class="slide-content">
+            <span class="tag tag-gold reveal">实践指南</span>
+            <h2 class="reveal">领导者愿景的典范（一）</h2>
+            <div class="grid-4 reveal" style="margin-top: var(--content-gap);">
+                <div class="card card-accent">
+                    <h3 style="color: var(--accent-rose);">❌ 错误</h3>
+                    <p style="font-size: clamp(0.8rem, 1.2vw, 0.95rem);">"按照我说的做，但不要学我的做法。"</p>
+                </div>
+                <div class="card card-sage">
+                    <h3 style="color: var(--accent-sage);">✓ 正确</h3>
+                    <p style="font-size: clamp(0.8rem, 1.2vw, 0.95rem);">"跟我做，但不要只是听我说。"</p>
+                </div>
+            </div>
+            <div class="card reveal" style="margin-top: var(--content-gap); border-left-color: var(--accent-warm);">
+                <h3>👀 下属总是在观察你的所作所为</h3>
+                <ul class="feature-list">
+                    <li>与孩子们观察父母并模仿他们的举止一样，员工也观察并模仿老板的行为</li>
+                    <li><strong>如果老板迟到了，那么员工们就会觉得迟到没有什么大不了</strong></li>
+                    <li>如果老板投机取巧，员工也会变得一样</li>
+                </ul>
+            </div>
+            <div class="quote reveal">
+                "你可以签署所有备忘录，可以发表所有激动人心的演说，但是如果组织里的其他人没有看到你每天都非常努力地工作，他们也不会努力工作的。"
+            </div>
+            <p class="quote-author reveal">—— 科林·鲍威尔</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 13: 领导者愿景的典范 2 -->
+    <section class="slide" data-slide="13">
+        <div class="decorative-circle circle-2"></div>
+        <div class="slide-content">
+            <span class="tag tag-gold reveal">实践指南</span>
+            <h2 class="reveal">领导者愿景的典范（二）</h2>
+            <div class="grid-2 reveal" style="margin-top: var(--content-gap);">
+                <div class="card card-accent">
+                    <h3>📚 教正确的事总比做正确的事容易</h3>
+                    <div class="quote" style="font-size: clamp(1.1rem, 2vw, 1.5rem); margin: var(--element-gap) 0;">
+                        "没有什么比人们给出好的建议但树立坏的榜样更让人困惑的事了。"
+                    </div>
+                    <p class="quote-author">—— 诺曼·文森特</p>
+                </div>
+                <div class="card card-sage">
+                    <h3>🎯 约翰·伍登的忠告</h3>
+                    <div class="quote" style="font-size: clamp(1.1rem, 2vw, 1.5rem); margin: var(--element-gap) 0;">
+                        "给我看看你能做什么，不要只告诉我你能做什么。"
+                    </div>
+                    <p class="quote-author">—— 加州大学洛杉矶分校篮球教练</p>
+                </div>
+            </div>
+            <div class="highlight-box reveal">
+                <p style="color: var(--text-primary);">
+                    <strong style="color: var(--accent-gold);">💡 费瑟斯通说：</strong>
+                    "领导者通常只是说教，只有在他们真正实践的时候，才算是传授。"
+                </p>
+            </div>
+        </div>
+    </section
+    <!-- SLIDE 14: 领导者愿景的典范 3 -->
+    <section class="slide" data-slide="14">
+        <div class="decorative-circle circle-3"></div>
+        <div class="slide-content">
+            <span class="tag tag-gold reveal">实践指南</span>
+            <h2 class="reveal">领导者愿景的典范（三）</h2>
+            <div class="card card-accent reveal" style="margin-bottom: var(--content-gap);">
+                <h3>🔄 提升他人之前，应该首先改变自己</h3>
+                <ul class="feature-list">
+                    <li>领导者第一个领导的应该是自己，第一个要试图做出改变的也是自己</li>
+                    <li>对自己设定的标准应该比其他人更高</li>
+                    <li>要成为一位口碑颇好的领导者，就必须一直刻苦地工作在最前面</li>
+                    <li>不断地完善自我</li>
+                </ul>
+            </div>
+            <div class="quote reveal">
+                "领导自己最困难。"
+            </div>
+            <p class="quote-author reveal">—— 当被问及"领导上司、同事、下属，哪个最困难？"时的回答</p>
+            <div class="highlight-box reveal">
+                <p style="color: var(--text-primary);">
+                    <strong style="color: var(--accent-rose);">⚠️ 警告：</strong>
+                    领导者往往乐于改变别人，却不首先改变自己。<br>
+                    如果不树立好的榜样，而用其他办法来领导别人，就意味着我们给他人传递了一幅<strong>模糊不清的镜像</strong>。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 15: 领导者愿景的典范 4 -->
+    <section class="slide" data-slide="15">
+        <div class="decorative-circle circle-1"></div>
+        <div class="slide-content">
+            <span class="tag tag-gold reveal">实践指南</span>
+            <h2 class="reveal">领导者愿景的典范（四）</h2>
+            <div class="card card-sage reveal" style="margin-bottom: var(--content-gap);">
+                <h3>💎 领导者能给下属的最宝贵的东西就是一个好的榜样</h3>
+                <p style="color: var(--text-primary); margin-top: var(--element-gap);">安捷伦财务公司的调查结果——员工认为领导者最重要的特质：</p>
+            </div>
+            <div class="reveal" style="display: flex; flex-direction: column; gap: clamp(0.4rem, 0.8vw, 0.6rem);">
+                <div style="display: flex; align-items: center; gap: var(--element-gap);">
+                    <span style="background: var(--accent-warm); color: var(--bg-primary); padding: clamp(0.3rem, 0.6vw, 0.4rem) clamp(0.8rem, 1.2vw, 1rem); border-radius: 15px; font-weight: 600; font-size: clamp(0.75rem, 1.1vw, 0.9rem);">1</span>
+                    <span style="color: var(--text-primary);">以身作则</span>
+                    <span style="color: var(--accent-gold); font-weight: 600;">26%</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: var(--element-gap);">
+                    <span style="background: var(--accent-gold); color: var(--bg-primary); padding: clamp(0.3rem, 0.6vw, 0.4rem) clamp(0.8rem, 1.2vw, 1rem); border-radius: 15px; font-weight: 600; font-size: clamp(0.75rem, 1.1vw, 0.9rem);">2</span>
+                    <span style="color: var(--text-primary);">道德品质</span>
+                    <span style="color: var(--text-secondary);">19%</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: var(--element-gap);">
+                    <span style="background: var(--accent-sage); color: var(--bg-primary); padding: clamp(0.3rem, 0.6vw, 0.4rem) clamp(0.8rem, 1.2vw, 1rem); border-radius: 15px; font-weight: 600; font-size: clamp(0.75rem, 1.1vw, 0.9rem);">3</span>
+                    <span style="color: var(--text-primary);">商业知识</span>
+                    <span style="color: var(--text-secondary);">17%</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: var(--element-gap);">
+                    <span style="background: var(--accent-rose); color: var(--bg-primary); padding: clamp(0.3rem, 0.6vw, 0.4rem) clamp(0.8rem, 1.2vw, 1rem); border-radius: 15px; font-weight: 600; font-size: clamp(0.75rem, 1.1vw, 0.9rem);">4</span>
+                    <span style="color: var(--text-primary);">公平公正</span>
+                    <span style="color: var(--text-secondary);">14%</span>
+                </div>
+            </div>
+            <p class="reveal" style="margin-top: var(--content-gap); color: var(--accent-warm);">
+                员工们最希望看到领导者能言行一致。
+            </p>
+        </div>
+    </section>
+
+    <!-- SLIDE 16: 榜样传承 -->
+    <section class="slide" data-slide="16">
+        <div class="decorative-circle circle-2"></div>
+        <div class="slide-content">
+            <h2 class="reveal">从优秀领导者身上学习</h2>
+            <p class="reveal">领导艺术更多的是模仿学来而不是通过学习得到的。</p>
+            <div class="grid-2 reveal" style="margin-top: var(--content-gap);">
+                <div class="card card-accent">
+                    <h3>👁️ 我从他们身上学到了什么</h3>
+                    <ul class="feature-list">
+                        <li><strong style="color: var(--accent-warm);">父亲的面对逆境</strong> → 坚持</li>
+                        <li><strong style="color: var(--accent-gold);">比尔·海波斯的风格</strong> → 热情</li>
+                        <li><strong style="color: var(--accent-sage);">肯·布兰佳的重视他人</strong> → 鼓舞</li>
+                        <li><strong style="color: var(--accent-rose);">比尔·布赖特的愿景</strong> → 梦想</li>
+                    </ul>
+                </div>
+                <div class="card card-sage">
+                    <h3>🎯 领导者通过示范来领导</h3>
+                    <p style="color: var(--text-primary);">作为领导者，把我所讲授的课程变成实践是最重要的事情。</p>
+                    <div class="quote" style="font-size: clamp(1.1rem, 2vw, 1.4rem); margin-top: var(--element-gap);">
+                        "领导就是示范。"
+                    </div>
+                    <p class="quote-author">—— 艾尔伯特·史怀哲</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 17: 大卫的故事 -->
+    <section class="slide" data-slide="17">
+        <div class="decorative-circle circle-3"></div>
+        <div class="slide-content">
+            <span class="tag tag-gold reveal">经典案例</span>
+            <h2 class="reveal">遵循领导者的示范：大卫王</h2>
+            <p class="reveal">古以色列大卫王的故事说明了"镜像法则"。</p>
+            <div class="grid-2 reveal" style="margin-top: var(--content-gap);">
+                <div class="card card-accent">
+                    <h3>🪨 战胜歌利亚</h3>
+                    <ul class="feature-list">
+                        <li>非利士人的勇士歌利亚挑战以色列人</li>
+                        <li>一个卑微的牧童大卫站出来迎战</li>
+                        <li>朝歌利亚甩了一颗石头，命中巨人额头</li>
+                        <li>用歌利亚自己的剑砍下他的首级</li>
+                    </ul>
+                </div>
+                <div class="card card-sage">
+                    <h3>👑 成为君主后的镜像</h3>
+                    <ul class="feature-list">
+                        <li>大卫长大成了勇士，后来成了君主</li>
+                        <li>他培养了一群"强悍的勇士"</li>
+                        <li>其中至少有五个人都曾杀死过巨人</li>
+                        <li><strong>大卫的示范教会了他的追随者们如何变成伟大的勇士</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="reveal" style="margin-top: var(--content-gap); color: var(--accent-warm);">
+                <strong>✨ 领导者的镜像会传承下去。</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- SLIDE 18: 朱利亚尼案例 -->
+    <section class="slide" data-slide="18">
+        <div class="decorative-circle circle-1"></div>
+        <div class="slide-content">
+            <span class="tag tag-rose reveal">现代案例</span>
+            <h2 class="reveal">在恐惧面前领导：鲁迪·朱利亚尼</h2>
+            <p class="reveal">朱利亚尼领导哲学的中心思想是<strong style="color: var(--accent-warm);">责任</strong>。</p>
+            <div class="grid-2 reveal" style="margin-top: var(--content-gap);">
+                <div class="card card-accent">
+                    <h3>📋 他的领导原则</h3>
+                    <ul class="feature-list">
+                        <li>"己所不欲，勿施于人"</li>
+                        <li>由你来设定行为的标准</li>
+                        <li>领导者比其他人更应该成为负责任的人</li>
+                        <li>每天早上8点集合高层员工召开早会</li>
+                    </ul>
+                </div>
+                <div class="card card-sage">
+                    <h3>💪 9·11事件中的领导</h3>
+                    <ul class="feature-list">
+                        <li>整个城市处于慌乱中的时候</li>
+                        <li>市长站在了最前线</li>
+                        <li>每天至少参加6场葬礼</li>
+                        <li>通过示范来领导整个国家</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="quote reveal" style="margin-top: var(--content-gap);">
+                "我在以前的工作中会观察领导者们如何做事，而现在我只是在做自己看到的事情而已。"
+            </div>
+            <p class="quote-author reveal">—— 鲁迪·朱利亚尼</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 19: 总结 -->
+    <section class="slide" data-slide="19">
+        <div class="decorative-circle circle-2"></div>
+        <div class="slide-content">
+            <h2 class="reveal">镜像法则 · 核心要点</h2>
+            <div class="grid-2 reveal" style="margin-top: var(--content-gap);">
+                <div class="card card-accent">
+                    <h3>✅ 正确的镜像</h3>
+                    <ul class="feature-list">
+                        <li>身先士卒，与下属一起冒险</li>
+                        <li>言行一致，要求自己比要求下属更高</li>
+                        <li>在困难时刻站在最前面</li>
+                        <li>为他人树立榜样</li>
+                    </ul>
+                </div>
+                <div class="card card-rose">
+                    <h3>❌ 错误的镜像</h3>
+                    <ul class="feature-list">
+                        <li>言行不一，说一套做一套</li>
+                        <li>逃避责任，不作决定</li>
+                        <li>自己达不到要求下属的标准</li>
+                        <li>在困难时刻消失不见</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight-box reveal" style="margin-top: var(--content-gap);">
+                <p style="color: var(--text-primary); font-size: clamp(1rem, 1.6vw, 1.2rem); text-align: center;">
+                    <strong style="color: var(--accent-warm);">领导者通过对愿景的有效示范把镜像变成了现实。</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 20: 实践工具 -->
+    <section class="slide" data-slide="20">
+        <div class="decorative-circle circle-3"></div>
+        <div class="slide-content">
+            <span class="tag tag-gold reveal">🛠️ 实践工具</span>
+            <h2 class="reveal">将镜像法则应用于生活</h2>
+            <div class="reveal-stagger" style="display: flex; flex-direction: column; gap: var(--element-gap);">
+                <div class="card card-accent">
+                    <h3>📊 步骤一：性格自评</h3>
+                    <ul class="feature-list">
+                        <li>列出你的主要优点：正直、努力、诚实等</li>
+                        <li>回想上个月所做的事有没有与这些优点不符的行为</li>
+                        <li>记录下来，这些都是日后需要努力改善的地方</li>
+                        <li>不仅要改变你的行为，也要改变你的态度</li>
+                    </ul>
+                </div>
+                <div class="card card-sage">
+                    <h3>👥 步骤二：邀请反馈</h3>
+                    <ul class="feature-list">
+                        <li>邀请一位你信赖的同事或朋友观察你一段时间（至少一周）</li>
+                        <li>把你告诉他们的与自己的实际行为作比较</li>
+                        <li>让他记录下任何不一致的地方</li>
+                        <li>碰面检验结果，但不要为自己辩护</li>
+                    </ul>
+                </div>
+                <div class="card card-gold">
+                    <h3>📈 步骤三：设定标杆</h3>
+                    <ul class="feature-list">
+                        <li>考虑哪3-5件事是你希望别人做得更好的</li>
+                        <li>为你的表现依次评分（也可以让其他人为你评分）</li>
+                        <li>如果分数低，就首先改变自己的行为</li>
+                        <li>如果分数高，就让更多人看到你的示范</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 21: 金句总结 -->
+    <section class="slide" data-slide="21">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="slide-content" style="text-align: center; justify-content: center; align-items: center;">
+            <h2 class="reveal" style="font-size: clamp(1.5rem, 4vw, 3rem); margin-bottom: var(--content-gap);">镜像法则 · 金句</h2>
+            <div class="quote reveal" style="border-left: none; padding-left: 0; font-size: clamp(1.5rem, 3.5vw, 2.8rem);">
+                "领导者通过对愿景的有效示范把镜像变成了现实。"
+            </div>
+            <div class="quote reveal" style="border-left: none; padding-left: 0; font-size: clamp(1.3rem, 3vw, 2.2rem); margin-top: var(--content-gap);">
+                "下属们可能会怀疑领导者的语言，但通常都相信他们的行为。"
+            </div>
+            <div class="quote reveal" style="border-left: none; padding-left: 0; font-size: clamp(1.3rem, 3vw, 2.2rem); margin-top: var(--content-gap);">
+                "领导就是示范。"
+            </div>
+            <p class="quote-author reveal" style="margin-top: var(--content-gap);">—— 艾尔伯特·史怀哲</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 22: 结尾 -->
+    <section class="slide title-slide" data-slide="22">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="decorative-circle circle-3"></div>
+        <div class="slide-content">
+            <h1 class="reveal" style="font-size: clamp(2rem, 6vw, 5rem);">谢谢观看</h1>
+            <p class="subtitle reveal">第13章 · 镜像法则</p>
+            <p class="reveal" style="margin-top: var(--content-gap); color: var(--text-secondary);">领导力21法则 · 约翰·C. 麦克斯维尔</p>
+            <div style="margin-top: var(--content-gap);" class="reveal">
+                <span class="tag">看到别人怎么做</span>
+                <span class="tag tag-gold">大家也会怎么做</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Slide Presentation Controller
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.currentSlide = 0;
+                this.init();
+            }
+
+            init() {
+                this.setupIntersectionObserver();
+                this.setupKeyboardNav();
+                this.setupProgressBar();
+                this.setupNavDots();
+                this.updateProgress();
+            }
+
+            setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            this.currentSlide = Array.from(this.slides).indexOf(entry.target);
+                            this.updateProgress();
+                            this.updateNavDots();
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                this.slides.forEach(slide => observer.observe(slide));
+            }
+
+            setupKeyboardNav() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                        e.preventDefault();
+                        this.nextSlide();
+                    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                        e.preventDefault();
+                        this.prevSlide();
+                    }
+                });
+            }
+
+            nextSlide() {
+                if (this.currentSlide < this.slides.length - 1) {
+                    this.slides[this.currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.slides[this.currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            setupProgressBar() {
+                this.progressBar = document.getElementById('progressBar');
+            }
+
+            updateProgress() {
+                const progress = ((this.currentSlide + 1) / this.slides.length) * 100;
+                if (this.progressBar) {
+                    this.progressBar.style.width = progress + '%';
+                }
+            }
+
+            setupNavDots() {
+                const navDots = document.getElementById('navDots');
+                this.slides.forEach((slide, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'nav-dot' + (index === 0 ? ' active' : '');
+                    dot.addEventListener('click', () => {
+                        slide.scrollIntoView({ behavior: 'smooth' });
+                    });
+                    navDots.appendChild(dot);
+                });
+                this.navDots = navDots.querySelectorAll('.nav-dot');
+            }
+
+            updateNavDots() {
+                this.navDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            new SlidePresentation();
+        });
+    </script>
+</body>
+</html>

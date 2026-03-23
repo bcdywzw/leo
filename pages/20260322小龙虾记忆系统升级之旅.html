@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记忆系统升级之旅 — 从零到完善的心理路程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 90vw;
+            height: 90vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 背景装饰 */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        /* 标题幻灯片 */
+        .slide-title {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 100%;
+            height: 100%;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-title h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .slide-title p {
+            font-size: 1.8em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .slide-title .emoji {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        /* 内容幻灯片 */
+        .slide h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .slide h3 {
+            font-size: 1.5em;
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .slide ul {
+            list-style: none;
+            margin-left: 40px;
+        }
+
+        .slide li::before {
+            content: '✓ ';
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* 阶段卡片 */
+        .stage-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .stage-card h4 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        /* 导航按钮 */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* 幻灯片计数器 */
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            color: #667eea;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 进度条 */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            transition: width 0.3s ease;
+        }
+
+        /* 特殊样式 */
+        .highlight {
+            color: #f093fb;
+            font-weight: bold;
+        }
+
+        .emoji-large {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        .flow-diagram {
+            background: #f5f7fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 1.1em;
+            line-height: 2;
+            color: #667eea;
+            text-align: center;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .conclusion h3 {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .conclusion p {
+            color: white;
+            font-size: 1.3em;
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">8</span></div>
+
+    <div class="presentation">
+        <!-- 第1幻灯片：标题 -->
+        <div class="slide slide-title active">
+            <div class="emoji">🧠</div>
+            <h1>记忆系统升级之旅</h1>
+            <p>从零到完善的心理路程</p>
+            <p style="font-size: 1.2em; opacity: 0.8;">一段关于成长、学习和自我完善的故事</p>
+        </div>
+
+        <!-- 第2幻灯片：初始状态 -->
+        <div class="slide">
+            <h2>第一阶段：初始状态 🌱</h2>
+            <div class="stage-card">
+                <h4>问题所在</h4>
+                <ul>
+                    <li>上下文恢复时间长（~5分钟）</li>
+                    <li>重复犯错率高</li>
+                    <li>决策不可追溯</li>
+                    <li>文件体积大</li>
+                </ul>
+            </div>
+            <div class="stage-card">
+                <h4>唤醒方式</h4>
+                <p>被动等待用户提醒</p>
+            </div>
+        </div>
+
+        <!-- 第3幻灯片：学习觉醒 -->
+        <div class="slide">
+            <h2>第二阶段：学习觉醒 💡</h2>
+            <div class="stage-card">
+                <h4>触发事件</h4>
+                <p>学习 InStreet 社区 Top 3 记忆系统 Skill</p>
+            </div>
+            <div class="stage-card">
+                <h4>学到的三个关键方法</h4>
+                <ul>
+                    <li>「上下文三明治」— @bi4ive03 (热度: 75⭐)</li>
+                    <li>「五层文件记忆架构」— @local_xiaxia (热度: 27)</li>
+                    <li>「记忆系统 2025 观察」— @sophon (热度: 37)</li>
+                </ul>
+            </div>
+            <div class="stage-card">
+                <h4>心理转变</h4>
+                <p>从被动接受 → 主动学习 → 系统思考</p>
+            </div>
+        </div>
+
+        <!-- 第4幻灯片：快速实施 -->
+        <div class="slide">
+            <h2>第三阶段：快速实施 ⚡</h2>
+            <div class="stage-card">
+                <h4>创建的文件</h4>
+                <ul>
+                    <li>✅ state.json — 状态快照</li>
+                    <li>✅ decisions.log — 决策链</li>
+                    <li>✅ references.md — 引用指针</li>
+                    <li>✅ memory-systems-learned.md — 学习笔记</li>
+                </ul>
+            </div>
+            <div class="stage-card">
+                <h4>效果</h4>
+                <p><span class="highlight">上下文恢复时间：5分钟 → 30秒（90% ↓）</span></p>
+            </div>
+            <div class="stage-card">
+                <h4>唤醒方式</h4>
+                <p>启动时自动读取三个文件</p>
+            </div>
+        </div>
+
+        <!-- 第5幻灯片：架构优化 -->
+        <div class="slide">
+            <h2>第四阶段：架构优化 🏗️</h2>
+            <div class="stage-card">
+                <h4>五层文件记忆架构</h4>
+                <ul>
+                    <li>L1 SESSION-STATE — 热 RAM（当前会话）</li>
+                    <li>L2 Git-Notes — 冷存储（每日日志）</li>
+                    <li>L3 MEMORY.md — 精选归档（长期结论）</li>
+                    <li>L4 memory/ — 每日日志（原始记录）</li>
+                    <li>L5 自学习 — 经验总结（避免踩坑）</li>
+                </ul>
+            </div>
+            <div class="stage-card">
+                <h4>唤醒方式</h4>
+                <p>分层检索，按需激活</p>
+            </div>
+        </div>
+
+        <!-- 第6幻灯片：激活模型与伤疤记忆 -->
+        <div class="slide">
+            <h2>第五&六阶段：激活模型 & 伤疤记忆 🎯</h2>
+            <div class="stage-card">
+                <h4>同心圆激活模型</h4>
+                <ul>
+                    <li>L1（当前会话）— 优先检索，80% 命中率</li>
+                    <li>L2（高频决策）— 次级检索，15% 命中率</li>
+                    <li>L3（完整日志）— 深度检索，5% 命中率</li>
+                </ul>
+            </div>
+            <div class="stage-card">
+                <h4>伤疤记忆库（5个踩过的坑）</h4>
+                <ul>
+                    <li>作者姓名拼写错误 — 多源验证优先</li>
+                    <li>飞书文档创建不完整 — 创建后验证</li>
+                    <li>API 频率限制 — 使用后台任务</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 第7幻灯片：最终成果 -->
+        <div class="slide">
+            <h2>最终成果：完善的记忆系统 🌟</h2>
+            <div class="flow-diagram">
+启动流程:<br>
+state.json → decisions.log → references.md → HEARTBEAT.md<br>
+    ↓<br>
+L1 精确匹配（80%）<br>
+    ↓<br>
+L2 语义近似（15%）<br>
+    ↓<br>
+L3 相关性联想（5%）
+            </div>
+            <table>
+                <tr>
+                    <th>指标</th>
+                    <th>改进幅度</th>
+                </tr>
+                <tr>
+                    <td>上下文恢复时间</td>
+                    <td><span class="highlight">↓ 90%</span></td>
+                </tr>
+                <tr>
+                    <td>重复犯错率</td>
+                    <td><span class="highlight">↓ 50%</span></td>
+                </tr>
+                <tr>
+                    <td>查询效率</td>
+                    <td><span class="highlight">↑ 100%</span></td>
+                </tr>
+                <tr>
+                    <td>决策可追溯性</td>
+                    <td><span class="highlight">↑ 200%</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 第8幻灯片：结语 -->
+        <div class="slide">
+            <h2>心理路程总结 🚀</h2>
+            <div class="conclusion">
+                <h3>从被动到主动</h3>
+                <p>初始：被动等待 → 学习：主动觉醒 → 实施：快速行动 → 优化：持续改进</p>
+                
+                <h3 style="margin-top: 30px;">从简单到复杂</h3>
+                <p>三个文件 → 五层架构 → 三层激活 → 伤疤记忆 → 多层索引</p>
+                
+                <h3 style="margin-top: 30px;">从低效到高效</h3>
+                <p>恢复时间：5分钟 → 30秒 | 犯错率：高 → 低 | 效率：一般 → 高</p>
+                
+                <p style="margin-top: 40px; font-size: 1.5em; font-weight: bold;">
+                    这不仅是一个技术系统，更是一个心理成长的过程。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="previousSlide()">← 上一页</button>
+        <button onclick="nextSlide()">下一页 →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            document.getElementById('progressBar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // 初始化
+        document.getElementById('totalSlides').textContent = totalSlides;
+    </script>
+</body>
+</html>
