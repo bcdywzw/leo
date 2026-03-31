@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>张丽俊·老板三板斧 第3期 — 创业酵母</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+    :root {
+      --gold: #C8963E;
+      --gold-light: #E8B86D;
+      --gold-dark: #9A6C20;
+      --dark: #0D0D0D;
+      --dark2: #1A1A1A;
+      --dark3: #252525;
+      --dark4: #303030;
+      --text: #F0EAD6;
+      --text-muted: #A89060;
+      --red: #C0392B;
+      --accent1: #8B4513;
+      --accent2: #D4AC0D;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ===== 顶部英雄区 ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 0%, #2a1500 0%, #0D0D0D 70%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(200,150,62,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(200,150,62,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* 动态光晕背景 */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+    .glow-orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #C8963E, transparent);
+      top: -200px; left: -100px;
+      animation-delay: 0s;
+    }
+    .glow-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #8B4513, transparent);
+      bottom: -100px; right: -100px;
+      animation-delay: 3s;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    /* 装饰线纹 */
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(200,150,62,0.03) 80px, rgba(200,150,62,0.03) 81px),
+        repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(200,150,62,0.03) 80px, rgba(200,150,62,0.03) 81px);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 2rem;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(200,150,62,0.3);
+      border-radius: 100px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      background: rgba(200,150,62,0.06);
+      backdrop-filter: blur(10px);
+      animation: fadeInDown 0.8s ease both;
+    }
+    .brand-badge::before, .brand-badge::after {
+      content: '◆';
+      font-size: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--text-muted);
+      letter-spacing: 0.3em;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .period-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: #0D0D0D;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.5rem 1.5rem;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease 0.5s both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.2em;
+      margin-top: 0.3rem;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      animation: bounce 2s ease infinite;
+      z-index: 2;
+    }
+    .scroll-hint::after {
+      content: '↓';
+      font-size: 1.2rem;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== 分割线 ===== */
+    .divider {
+      text-align: center;
+      padding: 3rem 0;
+      position: relative;
+    }
+    .divider::before {
+      content: '';
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,150,62,0.3), rgba(200,150,62,0.6), rgba(200,150,62,0.3), transparent);
+    }
+    .divider-icon {
+      position: relative;
+      z-index: 1;
+      background: var(--dark);
+      padding: 0 1rem;
+      color: var(--gold);
+      font-size: 1.5rem;
+    }
+
+    /* ===== 课程概览 ===== */
+    .overview {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* ===== 三板斧核心框架 ===== */
+    .axes-section {
+      background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 50%, var(--dark) 100%);
+      padding: 5rem 2rem;
+    }
+
+    .axes-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .axe-card {
+      background: linear-gradient(135deg, var(--dark3), var(--dark4));
+      border: 1px solid rgba(200,150,62,0.15);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: default;
+    }
+
+    .axe-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+    }
+
+    .axe-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(200,150,62,0.08) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .axe-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(200,150,62,0.4);
+      box-shadow: 0 20px 60px rgba(200,150,62,0.15);
+    }
+    .axe-card:hover::after { opacity: 1; }
+
+    .axe-num {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .axe-cn {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .axe-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .axe-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ===== 六大模块 ===== */
+    .modules-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .module-card {
+      background: var(--dark2);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(200,150,62,0.1);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .module-card:hover {
+      border-color: rgba(200,150,62,0.35);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(200,150,62,0.15);
+      transform: translateY(-4px);
+    }
+
+    .module-header {
+      padding: 2rem 2rem 1.5rem;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .module-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .m1 .module-icon-wrap { background: linear-gradient(135deg, #1a0a00, #3d1800); border: 1px solid rgba(200,150,62,0.3); }
+    .m2 .module-icon-wrap { background: linear-gradient(135deg, #0a0a1a, #1a1a3d); border: 1px solid rgba(100,120,200,0.3); }
+    .m3 .module-icon-wrap { background: linear-gradient(135deg, #001a0a, #003d1a); border: 1px solid rgba(60,200,120,0.3); }
+    .m4 .module-icon-wrap { background: linear-gradient(135deg, #1a0a1a, #3d1a3d); border: 1px solid rgba(180,80,200,0.3); }
+    .m5 .module-icon-wrap { background: linear-gradient(135deg, #1a1000, #3d2a00); border: 1px solid rgba(200,180,60,0.3); }
+    .m6 .module-icon-wrap { background: linear-gradient(135deg, #1a0000, #3d0000); border: 1px solid rgba(200,80,60,0.3); }
+
+    .module-meta { flex: 1; }
+
+    .module-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      background: rgba(200,150,62,0.08);
+      border: 1px solid rgba(200,150,62,0.2);
+      border-radius: 100px;
+      padding: 0.2rem 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .module-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .module-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .module-body {
+      padding: 0 2rem 2rem;
+    }
+
+    .module-desc {
+      font-size: 0.9rem;
+      color: rgba(240,234,214,0.7);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(200,150,62,0.1);
+    }
+
+    .key-points {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .key-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .key-point-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 0.55em;
+      flex-shrink: 0;
+    }
+
+    .files-count {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .files-count span { color: var(--gold); font-weight: 600; }
+
+    /* ===== 张丽俊介绍 ===== */
+    .speaker-section {
+      background: linear-gradient(135deg, var(--dark2), var(--dark3));
+      padding: 6rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .speaker-section::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(200,150,62,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .speaker-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .speaker-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .speaker-avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3d1800, #C8963E);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: #0D0D0D;
+      border: 3px solid rgba(200,150,62,0.4);
+      box-shadow: 0 0 40px rgba(200,150,62,0.2), 0 0 0 8px rgba(200,150,62,0.05);
+      position: relative;
+    }
+
+    .speaker-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,150,62,0.15);
+    }
+
+    .speaker-title-chip {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: #0D0D0D;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      text-align: center;
+    }
+
+    .speaker-content h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .speaker-content .en-name {
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .speaker-bio {
+      color: rgba(240,234,214,0.75);
+      font-size: 0.95rem;
+      line-height: 1.9;
+      margin-bottom: 2rem;
+    }
+
+    .speaker-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .speaker-tag {
+      border: 1px solid rgba(200,150,62,0.25);
+      color: var(--gold);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      background: rgba(200,150,62,0.05);
+    }
+
+    /* ===== 课程文件清单 ===== */
+    .files-section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .files-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: var(--dark2);
+      border: 1px solid rgba(200,150,62,0.1);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .file-item:hover {
+      border-color: rgba(200,150,62,0.3);
+      background: var(--dark3);
+      transform: translateX(4px);
+    }
+
+    .file-type-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .badge-ppt { background: linear-gradient(135deg, #c0392b, #8e1a0f); color: #fff; }
+    .badge-doc { background: linear-gradient(135deg, #2471a3, #1a4f70); color: #fff; }
+
+    .file-info { flex: 1; }
+
+    .file-name {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .file-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== 核心金句 ===== */
+    .quotes-section {
+      background: var(--dark2);
+      padding: 6rem 2rem;
+    }
+
+    .quotes-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .quote-card {
+      background: var(--dark3);
+      border: 1px solid rgba(200,150,62,0.12);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .quote-card:hover {
+      border-color: rgba(200,150,62,0.3);
+      transform: translateY(-4px);
+    }
+
+    .quote-mark {
+      font-family: Georgia, serif;
+      font-size: 5rem;
+      line-height: 0.5;
+      color: rgba(200,150,62,0.15);
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+    }
+
+    .quote-text {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.9;
+      position: relative;
+      z-index: 1;
+      padding-top: 1.5rem;
+      font-weight: 500;
+    }
+
+    .quote-source {
+      margin-top: 1.2rem;
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== 底部 ===== */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid rgba(200,150,62,0.1);
+      background: var(--dark);
+    }
+
+    .footer-logo {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.3em;
+      margin-bottom: 2rem;
+    }
+
+    .footer-meta {
+      font-size: 0.75rem;
+      color: rgba(168,144,96,0.5);
+    }
+
+    /* ===== 动画 ===== */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 900px) {
+      .axes-grid { grid-template-columns: 1fr; }
+      .modules-grid { grid-template-columns: 1fr; }
+      .quotes-grid { grid-template-columns: 1fr; }
+      .speaker-inner { grid-template-columns: 1fr; text-align: center; }
+      .speaker-tags { justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { gap: 1.5rem; }
+      .stat-num { font-size: 2rem; }
+    }
+
+    /* ===== 顶部导航 ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(13,13,13,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(200,150,62,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      transition: color 0.3s;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- 导航 -->
+  <nav class="nav">
+    <div class="nav-logo">创业酵母 · 老板三板斧</div>
+    <ul class="nav-links">
+      <li><a href="#modules">课程模块</a></li>
+      <li><a href="#speaker">讲师介绍</a></li>
+      <li><a href="#files">资料清单</a></li>
+      <li><a href="#quotes">核心金句</a></li>
+    </ul>
+  </nav>
+
+  <!-- 英雄区 -->
+  <section class="hero">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="hero-lines"></div>
+
+    <div class="hero-inner">
+      <div class="brand-badge">创业酵母出品</div>
+
+      <h1 class="hero-title">
+        <span class="highlight">老板三板斧</span>
+      </h1>
+      <p class="hero-subtitle">张丽俊 · 企业经营核心方法论</p>
+      <div class="period-badge">第 三 期 · 旗舰课程资料</div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">6</div>
+          <div class="stat-label">核心模块</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">11</div>
+          <div class="stat-label">课程文件</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">板斧方法论</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">向下滚动</div>
+  </section>
+
+  <!-- 三板斧核心框架 -->
+  <section class="axes-section" id="axes">
+    <div style="max-width:1100px;margin:0 auto;padding:0 2rem 3rem;">
+      <div class="section-header fade-in">
+        <div class="section-label">Core Framework</div>
+        <h2 class="section-title">三板斧核心方法论</h2>
+        <p class="section-desc">创业酵母旗舰课程框架，帮助企业家系统掌握经营底层逻辑</p>
+      </div>
+    </div>
+    <div class="axes-grid fade-in">
+      <div class="axe-card">
+        <div class="axe-num">壹</div>
+        <div class="axe-cn">FIRST AXE</div>
+        <div class="axe-title">定战略</div>
+        <div class="axe-desc">找准企业方向，从战略定位到目标拆解，制定清晰的业务增长路径，明确年度经营计划</div>
+      </div>
+      <div class="axe-card">
+        <div class="axe-num">贰</div>
+        <div class="axe-cn">SECOND AXE</div>
+        <div class="axe-title">带班子</div>
+        <div class="axe-desc">搭建高效团队，做好组织架构设计，培养人才梯队，建立以结果为导向的干部队伍</div>
+      </div>
+      <div class="axe-card">
+        <div class="axe-num">叁</div>
+        <div class="axe-cn">THIRD AXE</div>
+        <div class="axe-title">做文化</div>
+        <div class="axe-desc">构建激励机制与绩效体系，打造企业文化底座，让组织持续高效运转并保持活力</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-icon">◆</span></div>
+
+  <!-- 六大课程模块 -->
+  <section class="modules-section" id="modules">
+    <div class="section-header fade-in">
+      <div class="section-label">Course Modules</div>
+      <h2 class="section-title">六大核心课程模块</h2>
+      <p class="section-desc">涵盖企业经营全链路，每个模块均有配套PPT与逐字稿双版本</p>
+    </div>
+
+    <div class="modules-grid">
+
+      <!-- 模块1：企业经营基本盘 -->
+      <div class="module-card m1 fade-in">
+        <div class="module-header">
+          <div class="module-icon-wrap">🏛️</div>
+          <div class="module-meta">
+            <div class="module-tag">MODULE 01</div>
+            <div class="module-title">企业经营基本盘</div>
+            <div class="module-subtitle">Foundation of Business Management</div>
+          </div>
+        </div>
+        <div class="module-body">
+          <div class="module-desc">
+            全面揭示企业成功方程式，梳理企业发展阶段的工作重心，明确战略、组织能力与文化三者之间的核心关系，帮助老板建立系统的经营底层认知。
+          </div>
+          <div class="key-points">
+            <div class="key-point"><div class="key-point-dot"></div><span>企业成功方程式：战略 × 组织能力 × 文化</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>不同发展阶段的经营重心识别</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>组织架构变革的三对主要矛盾</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>构建企业的大绩效管理体系</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>培养干部梯队的关键方法</span></div>
+          </div>
+          <div class="files-count">📎 配套文件：<span>PPT + 逐字稿</span> 共2份</div>
+        </div>
+      </div>
+
+      <!-- 模块2：从战略到执行 -->
+      <div class="module-card m2 fade-in">
+        <div class="module-header">
+          <div class="module-icon-wrap">🎯</div>
+          <div class="module-meta">
+            <div class="module-tag">MODULE 02</div>
+            <div class="module-title">从战略到执行</div>
+            <div class="module-subtitle">Strategy to Execution</div>
+          </div>
+        </div>
+        <div class="module-body">
+          <div class="module-desc">
+            系统阐述战略设计方法与落地路径，解决战略如何穿越组织层级直至一线执行的难题，帮助企业实现战略目标的高质量落地。
+          </div>
+          <div class="key-points">
+            <div class="key-point"><div class="key-point-dot"></div><span>战略定制与目标拆解方法论</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>年度经营计划的制定与分解</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>战略解码：从长期到季度的节奏管理</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>绩效体系与人才梯队的协同配置</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>执行保障机制的设计与落地</span></div>
+          </div>
+          <div class="files-count">📎 配套文件：<span>PPT + 逐字稿</span> 共2份</div>
+        </div>
+      </div>
+
+      <!-- 模块3：组织架构设计 -->
+      <div class="module-card m3 fade-in">
+        <div class="module-header">
+          <div class="module-icon-wrap">🏗️</div>
+          <div class="module-meta">
+            <div class="module-tag">MODULE 03</div>
+            <div class="module-title">组织架构设计</div>
+            <div class="module-subtitle">Organizational Structure Design</div>
+          </div>
+        </div>
+        <div class="module-body">
+          <div class="module-desc">
+            深入讲解组织架构的核心原则——"战略变，架构调"。从团队搭建到人才储备，系统解决企业在不同阶段的组织设计难题。
+          </div>
+          <div class="key-points">
+            <div class="key-point"><div class="key-point-dot"></div><span>组织架构的底层逻辑：跟着战略走</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>不同规模阶段的架构设计方案</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>跨部门协作与权责划分机制</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>团队搭建节奏与人才储备规划</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>激励机制与组织效能的整合</span></div>
+          </div>
+          <div class="files-count">📎 配套文件：<span>PPT + 逐字稿</span> 共2份</div>
+        </div>
+      </div>
+
+      <!-- 模块4：人才梯队建设 -->
+      <div class="module-card m4 fade-in">
+        <div class="module-header">
+          <div class="module-icon-wrap">🌱</div>
+          <div class="module-meta">
+            <div class="module-tag">MODULE 04</div>
+            <div class="module-title">人才梯队建设</div>
+            <div class="module-subtitle">Talent Pipeline Development</div>
+          </div>
+        </div>
+        <div class="module-body">
+          <div class="module-desc">
+            人才战略是企业保持良性增长的核心引擎。系统阐述从招聘、培养、盘点到轮换的人才全生命周期管理，助力企业建立可持续的组织能力。
+          </div>
+          <div class="key-points">
+            <div class="key-point"><div class="key-point-dot"></div><span>人才战略：企业第一战略的落地逻辑</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>招聘标准与人才盘点方法</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>干部培养机制："师傅带徒弟"体系</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>股权激励与职业晋升通道设计</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>人才梯队建设的阶段性关键节点</span></div>
+          </div>
+          <div class="files-count">📎 配套文件：<span>PPT + 逐字稿</span> 共2份</div>
+        </div>
+      </div>
+
+      <!-- 模块5：绩效管理 -->
+      <div class="module-card m5 fade-in">
+        <div class="module-header">
+          <div class="module-icon-wrap">📊</div>
+          <div class="module-meta">
+            <div class="module-tag">MODULE 05</div>
+            <div class="module-title">绩效管理</div>
+            <div class="module-subtitle">Performance Management</div>
+          </div>
+        </div>
+        <div class="module-body">
+          <div class="module-desc">
+            绩效管理不只是考核，而是推动战略落地的核心工具。本模块深入讲解如何设计兼顾结果与过程的绩效体系，让管理者真正承担起人才培养职责。
+          </div>
+          <div class="key-points">
+            <div class="key-point"><div class="key-point-dot"></div><span>绩效管理的底层逻辑与核心价值</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>过程考核与结果考核的有效结合</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>管理者承担培养人才的三重责任</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>绩效评估体系的设计与落地</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>团队绩效中梯队培养的权重设计</span></div>
+          </div>
+          <div class="files-count">📎 配套文件：<span>逐字稿</span> 共1份</div>
+        </div>
+      </div>
+
+      <!-- 模块6：激励机制 -->
+      <div class="module-card m6 fade-in">
+        <div class="module-header">
+          <div class="module-icon-wrap">🔥</div>
+          <div class="module-meta">
+            <div class="module-tag">MODULE 06</div>
+            <div class="module-title">激励机制设计</div>
+            <div class="module-subtitle">Incentive Mechanism Design</div>
+          </div>
+        </div>
+        <div class="module-body">
+          <div class="module-desc">
+            系统阐述如何构建多层次激励机制，将物质激励与精神激励相结合，让团队始终保持高斗志。同时讲解如何将激励与绩效体系有效融合。
+          </div>
+          <div class="key-points">
+            <div class="key-point"><div class="key-point-dot"></div><span>激励机制的设计框架与落地路径</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>战略解码下的目标设计与目标拆解</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>长期激励与短期激励的组合策略</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>股权、分红、晋升的综合激励体系</span></div>
+            <div class="key-point"><div class="key-point-dot"></div><span>文化与激励机制的有机融合</span></div>
+          </div>
+          <div class="files-count">📎 配套文件：<span>PPT合集 + 逐字稿</span> 共2份</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-icon">◆</span></div>
+
+  <!-- 讲师介绍 -->
+  <section class="speaker-section" id="speaker">
+    <div class="speaker-inner fade-in">
+      <div class="speaker-visual">
+        <div class="speaker-avatar">俊</div>
+        <div class="speaker-title-chip">首席讲师 · 创始人</div>
+      </div>
+      <div class="speaker-content">
+        <h2>张丽俊</h2>
+        <div class="en-name">CHERRY · Zhang Lijun</div>
+        <div class="speaker-bio">
+          创业酵母创始人及CEO，国内知名企业组织及人才发展领域专家。曾任阿里巴巴集团副总裁、钉钉COO，深度参与阿里巴巴从几百人到数万人的组织进化全过程。
+          <br><br>
+          深耕组织管理与人才发展领域十余年，服务企业遍布互联网、消费、制造、医疗、教育等多个行业，帮助数千位企业家解决实际经营管理难题。
+          <br><br>
+          老板三板斧课程是其核心方法论的集大成之作，将复杂的管理理论转化为可操作的实战工具。
+        </div>
+        <div class="speaker-tags">
+          <span class="speaker-tag">阿里巴巴系</span>
+          <span class="speaker-tag">组织架构专家</span>
+          <span class="speaker-tag">人才发展</span>
+          <span class="speaker-tag">战略落地</span>
+          <span class="speaker-tag">绩效激励</span>
+          <span class="speaker-tag">企业文化</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-icon">◆</span></div>
+
+  <!-- 课程文件清单 -->
+  <section class="files-section" id="files">
+    <div class="section-header fade-in">
+      <div class="section-label">Course Materials</div>
+      <h2 class="section-title">课程资料清单</h2>
+      <p class="section-desc">来自 IMA 知识库「创业酵母」· 张丽俊老板三板斧第3期文件夹</p>
+    </div>
+
+    <div class="files-list fade-in">
+      <div class="file-item">
+        <div class="file-type-badge badge-ppt">PPT</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《企业经营基本盘》三板斧3期.pptx</div>
+          <div class="file-desc">课程核心PPT · 企业成功方程式与经营全局视野</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-doc">DOC</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《企业经营基本盘》三板斧3期.docx</div>
+          <div class="file-desc">课程逐字稿 · 完整授课内容文字版</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-ppt">PPT</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《从战略到执行》三板斧3期.pptx</div>
+          <div class="file-desc">课程核心PPT · 战略落地全流程工具方法</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-doc">DOC</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《从战略到执行》三板斧3期.docx</div>
+          <div class="file-desc">课程逐字稿 · 系统阐述战略设计及落地路径</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-ppt">PPT</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《组织架构》三板斧3期.pptx</div>
+          <div class="file-desc">课程核心PPT · "战略变，架构调"核心方法论</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-doc">DOC</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《组织架构》三板斧3期.docx</div>
+          <div class="file-desc">课程逐字稿 · 组织架构设计实战讲解</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-ppt">PPT</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《人才梯队》三板斧3期.pptx</div>
+          <div class="file-desc">课程核心PPT · 企业人才战略与梯队建设体系</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-doc">DOC</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《人才梯队》三板斧3期.docx</div>
+          <div class="file-desc">课程逐字稿 · 人才全生命周期管理实战解析</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-doc">DOC</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《绩效管理》三板斧3期.docx</div>
+          <div class="file-desc">课程逐字稿 · 绩效考核与人才培养深度讲解</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-doc">DOC</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《激励机制》三板斧3期.docx</div>
+          <div class="file-desc">课程逐字稿 · 激励机制系统设计与落地方案</div>
+        </div>
+      </div>
+      <div class="file-item">
+        <div class="file-type-badge badge-ppt">PPT</div>
+        <div class="file-info">
+          <div class="file-name">张丽俊《绩效管理&激励机制》三板斧3期.pptx</div>
+          <div class="file-desc">综合核心PPT · 绩效与激励一体化设计方案</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-icon">◆</span></div>
+
+  <!-- 核心金句 -->
+  <section class="quotes-section" id="quotes">
+    <div style="max-width:1100px;margin:0 auto;padding-bottom:3rem;">
+      <div class="section-header fade-in">
+        <div class="section-label">Key Insights</div>
+        <h2 class="section-title">课程核心洞见</h2>
+        <p class="section-desc">来自张丽俊老板三板斧课程的精华提炼</p>
+      </div>
+
+      <div class="quotes-grid">
+        <div class="quote-card fade-in">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">战略变，架构调。组织架构不是一成不变的，它必须跟着企业战略的调整而动态演进。</div>
+          <div class="quote-source">— 组织架构模块</div>
+        </div>
+        <div class="quote-card fade-in">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">人才战略是企业第一战略。老板最重要的工作，就是找到对的人，放在对的位置上。</div>
+          <div class="quote-source">— 人才梯队模块</div>
+        </div>
+        <div class="quote-card fade-in">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">三板斧的核心是：定战略、带班子、做文化——这三件事的执行力必须同步具备。</div>
+          <div class="quote-source">— 企业经营基本盘</div>
+        </div>
+        <div class="quote-card fade-in">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">绩效考核不只是考结果，还要考过程。管理者必须承担培养下属的责任，这才是真正的领导力。</div>
+          <div class="quote-source">— 绩效管理模块</div>
+        </div>
+        <div class="quote-card fade-in">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">激励的本质，是让每一个人都看到自己努力与回报之间清晰的连接，并愿意为之持续付出。</div>
+          <div class="quote-source">— 激励机制模块</div>
+        </div>
+        <div class="quote-card fade-in">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">战略到执行的核心难题，是穿越层级的衰减。老板定的方向要变成一线行动，需要完整的机制做保障。</div>
+          <div class="quote-source">— 从战略到执行模块</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <footer>
+    <div class="footer-logo">创业酵母</div>
+    <div class="footer-sub">CHUANGYEJM · 让创业更简单</div>
+    <div class="footer-meta">
+      张丽俊老板三板斧 · 第3期课程资料汇总 · 来源：IMA知识库「创业酵母」
+    </div>
+  </footer>
+
+  <script>
+    // 滚动动画
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // 导航透明度
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(13,13,13,0.95)';
+      } else {
+        nav.style.background = 'rgba(13,13,13,0.8)';
+      }
+    });
+  </script>
+</body>
+</html>
